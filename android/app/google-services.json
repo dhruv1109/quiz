@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "201003618205",
+    "project_id": "sih-app-72aa3",
+    "storage_bucket": "sih-app-72aa3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:201003618205:android:f55cd9bda21bdf8739a974",
+        "android_client_info": {
+          "package_name": "com.example.quizzledemo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "201003618205-tj604tkftpkutiltcl3qjq0vsaudokv0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAioFmMOa5vXkVHCIMkZh71YI_23N7wms0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "201003618205-tj604tkftpkutiltcl3qjq0vsaudokv0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
