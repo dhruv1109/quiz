@@ -7,10 +7,16 @@ import 'package:quizzle/screens/quiz/quiz_overview_screen.dart';
 import 'package:quizzle/widgets/widgets.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 
-String audio = '';
+String audio = "hi";
 dynamic finalResult = '';
 dynamic text = ' ';
 final FlutterTts flutterTts = FlutterTts();
+
+speak(String text) {
+  flutterTts.setLanguage("hi-IN");
+  flutterTts.setPitch(1);
+  flutterTts.speak(text);
+}
 
 class QuizeScreen extends GetView<QuizController> {
   const QuizeScreen({Key? key}) : super(key: key);
@@ -19,13 +25,6 @@ class QuizeScreen extends GetView<QuizController> {
 
   @override
   Widget build(BuildContext context) {
-    Future _speak() async {
-      await flutterTts.setLanguage("hi-IN");
-      await flutterTts.setPitch(1);
-      await flutterTts.speak(controller.currentQuestion.value!.question);
-    }
-
-    
     return WillPopScope(
       onWillPop: controller.onExitOfQuiz,
       child: Scaffold(
@@ -52,7 +51,6 @@ class QuizeScreen extends GetView<QuizController> {
           ),
           body: BackgroundDecoration(
             child: Obx(
-              
               () => Column(
                 children: [
                   if (controller.loadingStatus.value == LoadingStatus.loading)
@@ -70,42 +68,7 @@ class QuizeScreen extends GetView<QuizController> {
                                 style: kQuizeTS,
                               ),
                               Calculator(),
-                              // GetBuilder<QuizController>(
-                              //     id: 'answers_list',
-                              //     builder: (context) {
-                              //       return ListView.separated(
-                              //         itemCount: controller.currentQuestion
-                              //             .value!.answers.length,
-                              //         shrinkWrap: true,
-                              //         padding: const EdgeInsets.only(top: 25),
-                              //         physics:
-                              //             const NeverScrollableScrollPhysics(),
-                              //         separatorBuilder:
-                              //             (BuildContext context, int index) {
-                              //           return const SizedBox(
-                              //             height: 10,
-                              //           );
-                              //         },
-                              //         itemBuilder:
-                              //             (BuildContext context, int index) {
-                              //           final answer = controller
-                              //               .currentQuestion
-                              //               .value!
-                              //               .answers[index];
-                              //           return AnswerCard(
-                              //             isSelected: answer.identifier ==
-                              //                 controller.currentQuestion.value!
-                              //                     .selectedAnswer,
-                              //             onTap: () {
-                              //               controller.selectAnswer(
-                              //                   answer.identifier);
-                              //             },
-                              //             answer:
-                              //                 '${answer.identifier}. ${answer.answer}',
-                              //           );
-                              //         },
-                              //       );
-                              //     }),
+                              Speech(),
                             ],
                           ),
                         ),
@@ -163,6 +126,16 @@ class QuizeScreen extends GetView<QuizController> {
               ),
             ),
           )),
+    );
+  }
+}
+
+class Speech extends GetView<QuizController> {
+  const Speech({Key? key}) : super(key: key);
+
+  Widget build(BuildContext context) {
+    return Row(
+      children: speak(controller.currentQuestion.value!.question),
     );
   }
 }
@@ -414,203 +387,186 @@ class _CalculatorState extends State<Calculator> {
       case '1':
         {
           finalResult += 'a';
+          speak("a");
           numOne = '';
           break;
         }
       case '13':
         {
           finalResult += 'b';
+          speak("b");
           numOne = '';
           break;
         }
       case '12':
         {
           finalResult += 'c';
+          speak("c");
           numOne = '';
           break;
         }
       case '124':
         {
           finalResult += 'd';
+          speak("d");
           numOne = '';
           break;
         }
       case '14':
         {
           finalResult += 'e';
+          speak("e");
           numOne = '';
           break;
         }
       case '123':
         {
           finalResult += 'f';
+          speak("f");
           numOne = '';
           break;
         }
       case '1234':
         {
           finalResult += 'g';
+          speak("g");
           numOne = '';
           break;
         }
       case '134':
         {
           finalResult += 'h';
+          speak("h");
           numOne = '';
           break;
         }
       case '23':
         {
           finalResult += 'i';
+          speak("i");
           numOne = '';
           break;
         }
       case '234':
         {
           finalResult += 'j';
+          speak("j");
           numOne = '';
           break;
         }
       case '15':
         {
           finalResult += 'k';
+          speak("k");
           numOne = '';
           break;
         }
       case '135':
         {
           finalResult += 'l';
+          speak("l");
           numOne = '';
           break;
         }
       case '125':
         {
           finalResult += 'm';
+          speak("m");
           numOne = '';
           break;
         }
       case '1245':
         {
           finalResult += 'n';
+          speak("n");
           numOne = '';
           break;
         }
       case '145':
         {
           finalResult += 'o';
+          speak("o");
           numOne = '';
           break;
         }
       case '1235':
         {
           finalResult += 'p';
+          speak("p");
           numOne = '';
           break;
         }
       case '12345':
         {
           finalResult += 'q';
+          speak("q");
           numOne = '';
           break;
         }
       case '1345':
         {
           finalResult += 'r';
+          speak("r");
           numOne = '';
           break;
         }
       case '235':
         {
           finalResult += 's';
+          speak("s");
           numOne = '';
           break;
         }
       case '2345':
         {
           finalResult += 't';
+          speak("t");
           numOne = '';
           break;
         }
       case '156':
         {
           finalResult += 'u';
+          speak("u");
           numOne = '';
           break;
         }
       case '1356':
         {
           finalResult += 'v';
+          speak("v");
           numOne = '';
           break;
         }
       case '2346':
         {
           finalResult += 'w';
+          speak("w");
           numOne = '';
           break;
         }
       case '1256':
         {
           finalResult += 'x';
+          speak("x");
           numOne = '';
           break;
         }
       case '12456':
         {
           finalResult += 'y';
+          speak("y");
           numOne = '';
           break;
         }
       case '1456':
         {
           finalResult += 'z';
+          speak("z");
           numOne = '';
           break;
         }
     }
-
-    // if (numOne == '1') {
-    //   text = 'a';
-    //   // numOne = 0;
-    //   numTwo = 0;
-    //   // result = 'a';
-    //   finalResult = finalResult + text;
-    //   opr = '';
-    //   preOpr = '';
-    //   numOne = '';
-    // } else if (numOne == '13') {
-    //   text = 'b';
-    //   // numOne = 0;
-    //   numTwo = 0;
-    //   // result = 'a';
-    //   finalResult = finalResult + text;
-    //   opr = '';
-    //   preOpr = '';
-    // } else if (numOne == '12') {
-    //   text = 'c';
-    //   // numOne = 0;
-    //   numTwo = 0;
-    //   // result = 'a';
-    //   finalResult = finalResult + text;
-    //   opr = '';
-    //   preOpr = '';
-    // } else if (numOne == '124') {
-    //   text = 'd';
-    //   // numOne = 0;
-    //   numTwo = 0;
-    //   // result = 'a';
-    //   finalResult = finalResult + text;
-    //   opr = '';
-    //   preOpr = '';
-    // } else if (numOne == '14') {
-    //   text = 'e';
-    //   // numOne = 0;
-    //   numTwo = 0;
-    //   // result = 'a';
-    //   finalResult = finalResult + text;
-    //   opr = '';
-    //   preOpr = '';
-    // }
 
     setState(() {
       text = finalResult;
