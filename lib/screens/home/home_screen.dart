@@ -1,22 +1,48 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:get/get.dart';
-import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'package:quizzle/configs/configs.dart';
 import 'package:quizzle/controllers/controllers.dart';
 import 'package:quizzle/widgets/widgets.dart';
-
-import 'custom_drawer.dart';
+import 'package:flutter_tts/flutter_tts.dart';
+import '../onboarding/Calculator.dart';
+import '../onboarding/custom_drawer.dart';
+import 'practice.dart';
+import 'Learn.dart';
 
 class HomeScreen extends GetView<MyDrawerController> {
-  const HomeScreen({Key? key}) : super(key: key);
+  HomeScreen({Key? key}) : super(key: key);
 
   static const String routeName = '/home';
-  
+
+  final FlutterTts flutterTts = FlutterTts();
 
   @override
   Widget build(BuildContext context) {
+    Future _speak() async {
+      await flutterTts.setLanguage("hi-IN");
+      await flutterTts.setPitch(1);
+      await flutterTts.speak("Double Tap kare aur Braille Seekhe ");
+    }
+
+    Future _speak1() async {
+      await flutterTts.setLanguage("hi-IN");
+      await flutterTts.setPitch(1);
+      await flutterTts.speak("Kuch मजेदार Sawal");
+    }
+
+    Future _speak2() async {
+      await flutterTts.setLanguage("hi-IN");
+      await flutterTts.setPitch(1);
+      await flutterTts.speak("नया Gyaan ka sagar");
+    }
+
+    Future _speak3() async {
+      await flutterTts.setLanguage("hi-IN");
+      await flutterTts.setPitch(1);
+      await flutterTts.speak("Goga Humara Masiha , Goga Sabse Mahan");
+    }
+
     QuizPaperController _quizePprContoller = Get.find();
     return Scaffold(
         body: GetBuilder<MyDrawerController>(
@@ -76,39 +102,91 @@ class HomeScreen extends GetView<MyDrawerController> {
                   ),
                 ),
                 Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
-                    child: ContentArea(
-                      addPadding: false,
-                      child: Obx(
-                        () => LiquidPullToRefresh(
-                          height: 150,
-                          springAnimationDurationInMilliseconds: 500,
-                          //backgroundColor: Theme.of(context).primaryColor.withOpacity(0.1),
-                          color:
-                              Theme.of(context).primaryColor.withOpacity(0.5),
-                          onRefresh: () async {
-                            _quizePprContoller.getAllPapers();
+                  child: GridView.count(
+                    mainAxisSpacing: 10,
+                    crossAxisCount: 2,
+                    children: <Widget>[
+                      Card(
+                        child: InkWell(
+                          onTap: () => _speak(),
+                          onDoubleTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => Learn()),
+                            );
                           },
-                          child: ListView.separated(
-                            padding: UIParameters.screenPadding,
-                            shrinkWrap: true,
-                            itemCount: _quizePprContoller.allPapers.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              return QuizPaperCard(
-                                model: _quizePprContoller.allPapers[index],
-                              );
-                            },
-                            separatorBuilder:
-                                (BuildContext context, int index) {
-                              return const SizedBox(
-                                height: 20,
-                              );
-                            },
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Image.network(
+                                "https://st2.depositphotos.com/5425740/9532/v/380/depositphotos_95328970-stock-illustration-vector-group-of-students.jpg",
+                                height: 120,
+                              ),
+                              Text('Braille Learn'),
+                            ],
                           ),
                         ),
                       ),
-                    ),
+                      Card(
+                        child: InkWell(
+                          onTap: () => _speak1(),
+                          onDoubleTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Practice()),
+                            );
+                          },
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Image.network(
+                                "https://st2.depositphotos.com/5425740/9532/v/380/depositphotos_95328970-stock-illustration-vector-group-of-students.jpg",
+                                height: 120,
+                              ),
+                              Text('Challenges'),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Card(
+                        child: InkWell(
+                          onTap: () => _speak2(),
+                          onDoubleTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Calculator()),
+                            );
+                          },
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Image.network(
+                                "https://www.smallbizdaily.com/wp-content/uploads/2021/01/shutterstock_1746002939-1.jpg",
+                                height: 120,
+                              ),
+                              Text('Vocabulary'),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Card(
+                        child: InkWell(
+                          onTap: () => _speak3(),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Image.network(
+                                "https://st2.depositphotos.com/5425740/9532/v/380/depositphotos_95328970-stock-illustration-vector-group-of-students.jpg",
+                                height: 120,
+                              ),
+                              Text('Progress'),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 )
               ],

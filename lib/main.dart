@@ -6,7 +6,7 @@ import 'bindings/initial_binding.dart';
 import 'controllers/common/theme_controller.dart';
 import 'firebase_options.dart';
 import 'routes/app_routes.dart';
-import 'screens/data_uploader_screen.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initFireBase();

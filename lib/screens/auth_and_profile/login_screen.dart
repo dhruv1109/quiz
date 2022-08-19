@@ -23,20 +23,14 @@ class LoginScreen extends GetView<AuthController> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SvgPicture.asset('assets/images/app_splash_logo.svg'),
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 60),
-                child: Text(
-                  'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: kOnSurfaceTextColor, fontWeight: FontWeight.bold),
-                ),
+              const Image(
+                image: AssetImage("assets/l1.png"),
+                height: 350,
               ),
               MainButton(
                 onTap: () {
                   controller.siginInWithGoogle();
-                 },
+                },
                 color: Colors.white,
                 child: Stack(
                   children: [

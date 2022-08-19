@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:quizzle/configs/configs.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -10,10 +9,21 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        alignment: Alignment.center,
-        decoration: BoxDecoration(gradient: mainGradient(context)),
-        child: SvgPicture.asset('assets/images/app_splash_logo.svg'),
+      backgroundColor: Color(0xFF004D40),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Container(
+            child: const Image(
+              image: AssetImage('assets/l1.png'),
+              width: 400,
+            ),
+          ),
+          const SpinKitWave(
+            color: Colors.white,
+            size: 50.0,
+          ),
+        ],
       ),
     );
   }

@@ -20,10 +20,11 @@ class LightTheme with SubThemeData {
         splashColor: kPrimayColorLT.withOpacity(0.1),
         highlightColor: kPrimayColorLT.withOpacity(0.05),
         splashFactory: InkRipple.splashFactory,
-        textTheme: getTextThemes().apply(bodyColor: mainTextColorLT, displayColor: mainTextColorLT),
+        textTheme: getTextThemes()
+            .apply(bodyColor: mainTextColorLT, displayColor: mainTextColorLT),
         primaryColor: kPrimayColorLT,
-        elevatedButtonTheme: ElevatedButtonThemeData(
-            style: getElavatedButtonTheme()),
+        elevatedButtonTheme:
+            ElevatedButtonThemeData(style: getElavatedButtonTheme()),
         cardColor: cardColorLT,
         colorScheme: ColorScheme.fromSwatch(
             accentColor: kPrimayColorLT, primarySwatch: Colors.purple));

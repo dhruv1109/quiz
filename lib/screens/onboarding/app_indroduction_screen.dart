@@ -1,51 +1,62 @@
-import 'package:easy_separator/easy_separator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:quizzle/configs/themes/app_colors.dart';
-import 'package:quizzle/screens/home/home_screen.dart';
-import 'package:quizzle/widgets/common/circle_button.dart';
+import 'package:quizzle/controllers/auth_controller.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:quizzle/widgets/widgets.dart';
 
-class AppIntroductionScreen extends StatelessWidget {
+class AppIntroductionScreen extends GetView<AuthController> {
   const AppIntroductionScreen({Key? key}) : super(key: key);
   static const String routeName = '/introduction';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        alignment: Alignment.center,
-        decoration: BoxDecoration(gradient: mainGradient(context)),
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: Get.width * 0.2),
-          child: EasySeparatedColumn(
-            separatorBuilder: (context, index) => const SizedBox(
-              height: 40,
-            ),
+        backgroundColor: const Color(0xFF004D40),
+        // rgb(37, 150, 190)
+        body: Container(
+          color: Color(0xFF004D40),
+          child: Center(
+              child: Column(
+            mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Icon(
-                Icons.warning_amber_sharp,
-                size: 65,
-                color: kOnSurfaceTextColor,
+            children: <Widget>[
+              const Image(
+                image: AssetImage("assets/l1.png"),
+                height: 350,
               ),
-              const Text(
-                'This is not a production app. This quiz app is made for beginner flutter developers to understand the firebase integrations, state management, and the app flow. There are free available all source codes, design files also.',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 18,
-                  color: kOnSurfaceTextColor,
-                  fontWeight: FontWeight.bold
+              MainButton(
+                onTap: () {
+                  controller.siginInWithGoogle();
+                },
+                color: Colors.white,
+                child: Stack(
+                  children: [
+                    Positioned(
+                        top: 0,
+                        bottom: 0,
+                        left: 0,
+                        child: SvgPicture.asset(
+                          'assets/icons/google.svg',
+                        )),
+                    Center(
+                      child: Text(
+                        'Sign in  with google',
+                        style: TextStyle(
+                            color: Theme.of(context).primaryColor,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ],
                 ),
-              ),
-              CircularButton(
-                  onTap: () => Get.offAndToNamed(HomeScreen.routeName),
-                  child: const Icon(
-                    Icons.arrow_forward,
-                    size: 35,
-                  ))
+              )
             ],
-          ),
-        ),
-      ),
-    );
+          )),
+        ));
   }
 }
+// CircularButton(
+//                   onTap: () => Get.offAndToNamed(HomeScreen.routeName),
+//                   child: const Icon(
+//                     Icons.arrow_forward,
+//                     size: 35,
+//                   ))
