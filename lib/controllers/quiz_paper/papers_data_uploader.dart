@@ -54,6 +54,7 @@ class PapersDataUploader extends GetxController {
           "Description": paper.description,
           "time_seconds": paper.timeSeconds,
           "questions_count" : paper.questions == null ? 0 : paper.questions!.length
+       //   "subject" : paper.subject
         }, 
         
         );

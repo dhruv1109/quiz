@@ -9,6 +9,7 @@ class QuizPaperModel {
   String? imageUrl;
   Rxn<String?>? url;
   final String description;
+  // final String subject;
   final int timeSeconds;
   List<Question>? questions;
   final int questionsCount;
@@ -18,6 +19,7 @@ class QuizPaperModel {
     required this.title,
     this.imageUrl,
     required this.description,
+    // required this.subject,
     required this.timeSeconds,
     required this.questions,
     required this.questionsCount,
@@ -25,26 +27,32 @@ class QuizPaperModel {
 
   String timeInMinits() => "${(timeSeconds / 60).ceil()} mins";
 
-  factory QuizPaperModel.fromString(String jsonString) => QuizPaperModel.fromJson(json.decode(jsonString));
+  factory QuizPaperModel.fromString(String jsonString) =>
+      QuizPaperModel.fromJson(json.decode(jsonString));
 
   QuizPaperModel.fromJson(Map<String, dynamic> json)
       : id = json['id'],
         title = json['title'] as String,
         imageUrl = json['image_url'] as String?,
         description = json['Description'] as String,
+        //subject = json['subject'] as String,
         timeSeconds = json['time_seconds'] as int,
         questionsCount = 0,
 
         /// will be update in PapersDataUploader
-        questions = json['questions'] == null ? [] : (json['questions'] as List)
-            .map((dynamic e) => Question.fromJson(e as Map<String, dynamic>))
-            .toList();
+        questions = json['questions'] == null
+            ? []
+            : (json['questions'] as List)
+                .map(
+                    (dynamic e) => Question.fromJson(e as Map<String, dynamic>))
+                .toList();
 
   QuizPaperModel.fromSnapshot(DocumentSnapshot<Map<String, dynamic>> snapshot)
       : id = snapshot.id,
         title = snapshot['title'],
         imageUrl = snapshot['image_url'],
         description = snapshot['Description'],
+        //  subject = snapshot['subject'],
         timeSeconds = snapshot['time_seconds'],
         questionsCount = snapshot['questions_count'] as int,
         questions = [];
@@ -54,6 +62,7 @@ class QuizPaperModel {
         'title': title,
         'image_url': imageUrl,
         'Description': description,
+        //  'subject': subject,
         'time_seconds': timeSeconds,
         // 'questions':
         //     questions == null ? [] : questions!.map((e) => e.toJson()).toList()
@@ -109,8 +118,8 @@ class Answer {
         answer = json['Answer'] as String?;
 
   Answer.fromSnapshot(QueryDocumentSnapshot<Map<String, dynamic>> snapshot)
-    : identifier = snapshot['identifier'] as String?,
-      answer = snapshot['answer'] as String?; 
+      : identifier = snapshot['identifier'] as String?,
+        answer = snapshot['answer'] as String?;
 
   Map<String, dynamic> toJson() => {'identifier': identifier, 'Answer': answer};
 }
