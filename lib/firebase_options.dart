@@ -70,7 +70,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '201003618205',
     projectId: 'sih-app-72aa3',
     storageBucket: 'sih-app-72aa3.appspot.com',
-    iosClientId: '201003618205-ra96l1l8c2og82i8ao1sm39gq5uu2de4.apps.googleusercontent.com',
+    iosClientId:
+        '201003618205-ra96l1l8c2og82i8ao1sm39gq5uu2de4.apps.googleusercontent.com',
     iosBundleId: 'com.codefox.quizzle',
   );
 }

@@ -3,7 +3,7 @@ import 'package:alan_voice/alan_voice.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'practice.dart';
 
-dynamic finalResult = '';
+dynamic finalResult = ' ';
 dynamic text = ' ';
 final FlutterTts flutterTts = FlutterTts();
 
@@ -51,6 +51,9 @@ class _LearnState extends State<Learn> {
 
   dynamic displaytxt = 20;
   //Button Widget
+  dynamic numOne = '';
+  dynamic result = '';
+
   Widget calcbutton(String btntxt, Color btncolor, Color txtcolor) {
     return Container(
       child: RaisedButton(
@@ -76,11 +79,16 @@ class _LearnState extends State<Learn> {
   Widget build(BuildContext context) {
     //Calculator
     return Scaffold(
+      backgroundColor: Colors.black,
+      appBar: AppBar(
+        title: Text('Braille'),
+        backgroundColor: Colors.black,
+      ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 5),
         child: GestureDetector(
           onHorizontalDragEnd: (DragEndDetails details) {
-            print('start');
+            print('horizontal');
             if (finalResult != null && finalResult.length > 0) {
               text = text.substring(0, text.length - 1);
               finalResult = finalResult.substring(0, finalResult.length - 1);
@@ -94,7 +102,7 @@ class _LearnState extends State<Learn> {
           },
 
           onVerticalDragEnd: (DragEndDetails details) {
-            print('start');
+            print('vertical');
             if (finalResult != null && finalResult.length > 0) {
               text = text + ' ';
               finalResult = finalResult + ' ';
@@ -106,9 +114,8 @@ class _LearnState extends State<Learn> {
               );
             }
           },
-
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -116,17 +123,11 @@ class _LearnState extends State<Learn> {
                   GestureDetector(
                     // children: <Widget>[
                     onTap: () {
-                      check = 'ok';
                       print('tap');
-                      if (numOne == '') {
-                        numOne = result;
-                        result = '';
-                      } else {
-                        numTwo = result;
-                      }
+                      calculation('ok');
                     },
                     child: Padding(
-                      padding: const EdgeInsets.all(10.0),
+                      padding: const EdgeInsets.all(1.0),
                       child: Text(
                         '$text',
                         textAlign: TextAlign.left,
@@ -140,32 +141,18 @@ class _LearnState extends State<Learn> {
                   ),
                 ],
               ),
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.end,
-              //   children: <Widget>[
-              // Calculator display
-              // SingleChildScrollView(
-              // scrollDirection: Axis.vertical,
-              // ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   calcbutton('1', Colors.grey, Colors.white),
                   calcbutton('2', Colors.grey, Colors.white),
-                  // calcbutton('%', Colors.grey, Colors.black),
-                  // calcbutton('/', Colors.amber, Colors.white),
                 ],
               ),
-              // SizedBox(
-              //   height: 10,
-              // ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   calcbutton('3', Colors.grey, Colors.white),
                   calcbutton('4', Colors.grey, Colors.white),
-                  // calcbutton('9', Colors.grey, Colors.white),
-                  // calcbutton('x', Colors.amber, Colors.white),
                 ],
               ),
               SizedBox(
@@ -174,47 +161,10 @@ class _LearnState extends State<Learn> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  // calcbutton('4', Colors.grey, Colors.white),
                   calcbutton('5', Colors.grey, Colors.white),
                   calcbutton('6', Colors.grey, Colors.white),
-                  // calcbutton('-', Colors.amber, Colors.white),
                 ],
               ),
-              SizedBox(
-                height: 10,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  // calcbutton('', Colors.grey, Colors.white),
-                  calcbutton('ok', Colors.grey, Colors.white),
-                  // calcbutton('3', Colors.grey, Colors.white),
-                  // calcbutton('+', Colors.amber, Colors.white),
-                ],
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              //   children: <Widget>[
-              //     //this is button Zero
-              //     RaisedButton(
-              //       padding: EdgeInsets.fromLTRB(34, 20, 128, 20),
-              //       onPressed: () {
-              //         calculation('0');
-              //       },
-              //       shape: StadiumBorder(),
-              //       child: Text(
-              //         '0',
-              //         style: TextStyle(fontSize: 35, color: Colors.white),
-              //       ),
-              //       color: Colors.grey[850],
-              //     ),
-              //     calcbutton('.', Colors.grey, Colors.white),
-              //     calcbutton('=', Colors.amber, Colors.white),
-              //   ],
-              // ),
               SizedBox(
                 height: 10,
               ),
@@ -227,63 +177,16 @@ class _LearnState extends State<Learn> {
     );
   }
 
-  //Calculator logic
-
-  dynamic numOne = '';
-  dynamic numTwo = '';
-
-  dynamic result = '';
-
-  dynamic opr = '';
-  dynamic preOpr = '';
   void calculation(btnText) {
-    if (opr == '=' && btnText == '=') {
-      if (preOpr == '+') {
-        finalResult = add();
-      } else if (preOpr == '-') {
-        finalResult = sub();
-      } else if (preOpr == 'x') {
-        finalResult = mul();
-      } else if (preOpr == '/') {
-        finalResult = div();
-      }
-    } else if (check == 'ok' || btnText == 'ok') {
+    if (check == 'ok' || btnText == 'ok') {
       if (numOne == '') {
         numOne = result;
         check = '';
         result = '';
-      } else {
-        numTwo = result;
       }
-
-      if (opr == '+') {
-        finalResult = add();
-      } else if (opr == '-') {
-        finalResult = sub();
-      } else if (opr == 'x') {
-        finalResult = mul();
-      } else if (opr == '/') {
-        finalResult = div();
-      }
-      preOpr = opr;
-      opr = btnText;
       result = '';
-    } else if (btnText == '%') {
-      result = numOne / 100;
-      finalResult = doesContainDecimal(result);
-    } else if (btnText == '.') {
-      if (!result.toString().contains('.')) {
-        result = result.toString() + '.';
-      }
-      finalResult = result;
-    } else if (btnText == '+/-') {
-      result.toString().startsWith('-')
-          ? result = result.toString().substring(1)
-          : result = '-' + result.toString();
-      finalResult = result;
     } else {
       result = result + btnText;
-      // finalResult = result;
     }
 
     switch (numOne) {
@@ -469,43 +372,15 @@ class _LearnState extends State<Learn> {
           numOne = '';
           break;
         }
+      default:
+        {
+          numOne = '';
+          break;
+        }
     }
 
     setState(() {
       text = finalResult;
     });
-  }
-
-  String add() {
-    result = (numOne + numTwo).toString();
-    numOne = double.parse(result);
-    return doesContainDecimal(result);
-  }
-
-  String sub() {
-    result = (numOne - numTwo).toString();
-    numOne = double.parse(result);
-    return doesContainDecimal(result);
-  }
-
-  String mul() {
-    result = (numOne * numTwo).toString();
-    numOne = double.parse(result);
-    return doesContainDecimal(result);
-  }
-
-  String div() {
-    result = (numOne / numTwo).toString();
-    numOne = double.parse(result);
-    return doesContainDecimal(result);
-  }
-
-  String doesContainDecimal(dynamic result) {
-    if (result.toString().contains('.')) {
-      List<String> splitDecimal = result.toString().split('.');
-      if (!(int.parse(splitDecimal[1]) > 0))
-        return result = splitDecimal[0].toString();
-    }
-    return result;
   }
 }

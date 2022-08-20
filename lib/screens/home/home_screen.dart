@@ -87,6 +87,12 @@ class HomeScreen extends GetView<MyDrawerController> {
                                 if (user != null) {
                                   _label = '  Hello ${user.displayName}';
                                 }
+                                Future _speak() async {
+                                  await flutterTts.setLanguage("hi-IN");
+                                  await flutterTts.setPitch(1);
+                                  await flutterTts.speak(_label);
+                                }
+
                                 return Text(_label,
                                     style: kDetailsTS.copyWith(
                                         color: kOnSurfaceTextColor));

@@ -8,7 +8,7 @@ import 'package:quizzle/widgets/widgets.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 
 String audio = "hi";
-dynamic finalResult = '';
+dynamic finalResult = ' ';
 dynamic text = ' ';
 final FlutterTts flutterTts = FlutterTts();
 
@@ -31,7 +31,7 @@ class QuizeScreen extends GetView<QuizController> {
           extendBodyBehindAppBar: true,
           appBar: CustomAppBar(
             leading: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+              // padding: const EdgeInsets.symmetric(vertical: 4),
               child: Obx(
                 () => CountdownTimer(
                   time: controller.time.value,
@@ -60,7 +60,7 @@ class QuizeScreen extends GetView<QuizController> {
                     Expanded(
                       child: ContentArea(
                         child: SingleChildScrollView(
-                          padding: const EdgeInsets.only(top: 20),
+                          padding: const EdgeInsets.only(top: 10),
                           child: Column(
                             children: [
                               Text(
@@ -83,7 +83,7 @@ class QuizeScreen extends GetView<QuizController> {
                           Visibility(
                             visible: controller.isFirstQuestion,
                             child: Padding(
-                              padding: const EdgeInsets.only(right: 5.0),
+                              padding: const EdgeInsets.only(right: 1.0),
                               child: SizedBox(
                                 height: 55,
                                 width: 55,
@@ -104,7 +104,7 @@ class QuizeScreen extends GetView<QuizController> {
                                 child: MainButton(
                                   onTap: () {
                                     controller.selectAnswer(finalResult);
-                                    finalResult = '';
+                                    finalResult = ' ';
                                     text = ' ';
                                     controller.islastQuestion
                                         ? Get.toNamed(
@@ -163,12 +163,14 @@ class _CalculatorState extends State<Calculator> {
         ),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
         color: btncolor,
-        padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 40),
+        padding: const EdgeInsets.symmetric(horizontal: 65, vertical: 40),
       ),
     );
   }
 
   var check;
+  dynamic numOne = '';
+  dynamic result = '';
 
   Widget build(BuildContext context) {
     //Calculator
@@ -177,7 +179,8 @@ class _CalculatorState extends State<Calculator> {
         padding: EdgeInsets.symmetric(horizontal: 5),
         child: GestureDetector(
           onHorizontalDragEnd: (DragEndDetails details) {
-            print('start');
+            print('horizontal');
+            speak("back space");
             if (finalResult != null && finalResult.length > 0) {
               text = text.substring(0, text.length - 1);
               finalResult = finalResult.substring(0, finalResult.length - 1);
@@ -191,7 +194,8 @@ class _CalculatorState extends State<Calculator> {
           },
 
           onVerticalDragEnd: (DragEndDetails details) {
-            print('start');
+            print('vertical');
+            speak("space");
             if (finalResult != null && finalResult.length > 0) {
               text = text + ' ';
               finalResult = finalResult + ' ';
@@ -203,9 +207,8 @@ class _CalculatorState extends State<Calculator> {
               );
             }
           },
-
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -213,17 +216,11 @@ class _CalculatorState extends State<Calculator> {
                   GestureDetector(
                     // children: <Widget>[
                     onTap: () {
-                      check = 'ok';
                       print('tap');
-                      if (numOne == '') {
-                        numOne = result;
-                        result = '';
-                      } else {
-                        numTwo = result;
-                      }
+                      calculation('ok');
                     },
                     child: Padding(
-                      padding: const EdgeInsets.all(10.0),
+                      padding: const EdgeInsets.all(1.0),
                       child: Text(
                         '$text',
                         textAlign: TextAlign.left,
@@ -237,83 +234,26 @@ class _CalculatorState extends State<Calculator> {
                   ),
                 ],
               ),
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.end,
-              //   children: <Widget>[
-              // Calculator display
-              // SingleChildScrollView(
-              // scrollDirection: Axis.vertical,
-              // ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   calcbutton('1', Colors.grey, Colors.white),
                   calcbutton('2', Colors.grey, Colors.white),
-                  // calcbutton('%', Colors.grey, Colors.black),
-                  // calcbutton('/', Colors.amber, Colors.white),
                 ],
               ),
-              // SizedBox(
-              //   height: 10,
-              // ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   calcbutton('3', Colors.grey, Colors.white),
                   calcbutton('4', Colors.grey, Colors.white),
-                  // calcbutton('9', Colors.grey, Colors.white),
-                  // calcbutton('x', Colors.amber, Colors.white),
                 ],
-              ),
-              SizedBox(
-                height: 10,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  // calcbutton('4', Colors.grey, Colors.white),
                   calcbutton('5', Colors.grey, Colors.white),
                   calcbutton('6', Colors.grey, Colors.white),
-                  // calcbutton('-', Colors.amber, Colors.white),
                 ],
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  // calcbutton('', Colors.grey, Colors.white),
-                  calcbutton('ok', Colors.grey, Colors.white),
-                  // calcbutton('3', Colors.grey, Colors.white),
-                  // calcbutton('+', Colors.amber, Colors.white),
-                ],
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              //   children: <Widget>[
-              //     //this is button Zero
-              //     RaisedButton(
-              //       padding: EdgeInsets.fromLTRB(34, 20, 128, 20),
-              //       onPressed: () {
-              //         calculation('0');
-              //       },
-              //       shape: StadiumBorder(),
-              //       child: Text(
-              //         '0',
-              //         style: TextStyle(fontSize: 35, color: Colors.white),
-              //       ),
-              //       color: Colors.grey[850],
-              //     ),
-              //     calcbutton('.', Colors.grey, Colors.white),
-              //     calcbutton('=', Colors.amber, Colors.white),
-              //   ],
-              // ),
-              SizedBox(
-                height: 10,
               ),
             ],
           ),
@@ -324,63 +264,16 @@ class _CalculatorState extends State<Calculator> {
     );
   }
 
-  //Calculator logic
-
-  dynamic numOne = '';
-  dynamic numTwo = '';
-
-  dynamic result = '';
-
-  dynamic opr = '';
-  dynamic preOpr = '';
   void calculation(btnText) {
-    if (opr == '=' && btnText == '=') {
-      if (preOpr == '+') {
-        finalResult = add();
-      } else if (preOpr == '-') {
-        finalResult = sub();
-      } else if (preOpr == 'x') {
-        finalResult = mul();
-      } else if (preOpr == '/') {
-        finalResult = div();
-      }
-    } else if (check == 'ok' || btnText == 'ok') {
+    if (check == 'ok' || btnText == 'ok') {
       if (numOne == '') {
         numOne = result;
         check = '';
         result = '';
-      } else {
-        numTwo = result;
       }
-
-      if (opr == '+') {
-        finalResult = add();
-      } else if (opr == '-') {
-        finalResult = sub();
-      } else if (opr == 'x') {
-        finalResult = mul();
-      } else if (opr == '/') {
-        finalResult = div();
-      }
-      preOpr = opr;
-      opr = btnText;
       result = '';
-    } else if (btnText == '%') {
-      result = numOne / 100;
-      finalResult = doesContainDecimal(result);
-    } else if (btnText == '.') {
-      if (!result.toString().contains('.')) {
-        result = result.toString() + '.';
-      }
-      finalResult = result;
-    } else if (btnText == '+/-') {
-      result.toString().startsWith('-')
-          ? result = result.toString().substring(1)
-          : result = '-' + result.toString();
-      finalResult = result;
     } else {
       result = result + btnText;
-      // finalResult = result;
     }
 
     switch (numOne) {
@@ -566,43 +459,15 @@ class _CalculatorState extends State<Calculator> {
           numOne = '';
           break;
         }
+      default:
+        {
+          numOne = '';
+          break;
+        }
     }
 
     setState(() {
       text = finalResult;
     });
-  }
-
-  String add() {
-    result = (numOne + numTwo).toString();
-    numOne = double.parse(result);
-    return doesContainDecimal(result);
-  }
-
-  String sub() {
-    result = (numOne - numTwo).toString();
-    numOne = double.parse(result);
-    return doesContainDecimal(result);
-  }
-
-  String mul() {
-    result = (numOne * numTwo).toString();
-    numOne = double.parse(result);
-    return doesContainDecimal(result);
-  }
-
-  String div() {
-    result = (numOne / numTwo).toString();
-    numOne = double.parse(result);
-    return doesContainDecimal(result);
-  }
-
-  String doesContainDecimal(dynamic result) {
-    if (result.toString().contains('.')) {
-      List<String> splitDecimal = result.toString().split('.');
-      if (!(int.parse(splitDecimal[1]) > 0))
-        return result = splitDecimal[0].toString();
-    }
-    return result;
   }
 }
