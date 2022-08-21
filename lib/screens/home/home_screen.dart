@@ -7,8 +7,9 @@ import 'package:quizzle/widgets/widgets.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import '../onboarding/Calculator.dart';
 import '../onboarding/custom_drawer.dart';
-import 'practice.dart';
-import 'Learn.dart';
+import 'learn.dart';
+import 'challenge.dart';
+import 'PracticeTest.dart';
 
 class HomeScreen extends GetView<MyDrawerController> {
   HomeScreen({Key? key}) : super(key: key);
@@ -19,6 +20,12 @@ class HomeScreen extends GetView<MyDrawerController> {
 
   @override
   Widget build(BuildContext context) {
+    Future _speakk(String text) async {
+      await flutterTts.setLanguage("hi-IN");
+      await flutterTts.setPitch(1);
+      await flutterTts.speak(text);
+    }
+
     Future _speak() async {
       await flutterTts.setLanguage("hi-IN");
       await flutterTts.setPitch(1);
@@ -87,12 +94,9 @@ class HomeScreen extends GetView<MyDrawerController> {
                                 if (user != null) {
                                   _label = '  Hello ${user.displayName}';
                                 }
-                                Future _speak() async {
-                                  await flutterTts.setLanguage("hi-IN");
-                                  await flutterTts.setPitch(1);
-                                  await flutterTts.speak(_label);
-                                }
-
+                                String promote =
+                                    _label + '  goga is here to assist you';
+                                _speakk(promote);
                                 return Text(_label,
                                     style: kDetailsTS.copyWith(
                                         color: kOnSurfaceTextColor));
@@ -140,7 +144,7 @@ class HomeScreen extends GetView<MyDrawerController> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => Practice()),
+                                  builder: (context) => Challenge()),
                             );
                           },
                           child: Column(
@@ -162,7 +166,7 @@ class HomeScreen extends GetView<MyDrawerController> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => Calculator()),
+                                  builder: (context) => PracticeTest()),
                             );
                           },
                           child: Column(

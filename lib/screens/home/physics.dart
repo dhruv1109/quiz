@@ -7,11 +7,10 @@ import 'package:quizzle/controllers/controllers.dart';
 import 'package:quizzle/widgets/widgets.dart';
 import '../onboarding/custom_drawer.dart';
 
-class Practice extends GetView<MyDrawerController> {
-  const Practice({Key? key}) : super(key: key);
+class physics extends GetView<MyDrawerController> {
+  const physics({Key? key}) : super(key: key);
 
- // static const String routeName = '/home';
-  
+  // static const String routeName = '/home';
 
   @override
   Widget build(BuildContext context) {
@@ -93,9 +92,21 @@ class Practice extends GetView<MyDrawerController> {
                             shrinkWrap: true,
                             itemCount: _quizePprContoller.allPapers.length,
                             itemBuilder: (BuildContext context, int index) {
-                              return QuizPaperCard(
-                                model: _quizePprContoller.allPapers[index],
-                              );
+                              //hero
+                              if (_quizePprContoller.allPapers[index].subject ==
+                                  "physics") {
+                                return QuizPaperCard(
+                                  model: _quizePprContoller.allPapers[index],
+                                );
+                              } else {
+                                return const SizedBox(
+                                  height: 20,
+                                );
+
+                                /*return QuizPaperCard(
+                                  model: _quizePprContoller.allPapers[100],
+                                );*/
+                              }
                             },
                             separatorBuilder:
                                 (BuildContext context, int index) {

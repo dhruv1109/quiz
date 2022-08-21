@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:alan_voice/alan_voice.dart';
 import 'package:flutter_tts/flutter_tts.dart';
-import 'practice.dart';
 
 dynamic finalResult = ' ';
 dynamic text = ' ';

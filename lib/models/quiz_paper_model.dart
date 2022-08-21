@@ -9,7 +9,7 @@ class QuizPaperModel {
   String? imageUrl;
   Rxn<String?>? url;
   final String description;
-  // final String subject;
+  final String subject;
   final int timeSeconds;
   List<Question>? questions;
   final int questionsCount;
@@ -19,7 +19,7 @@ class QuizPaperModel {
     required this.title,
     this.imageUrl,
     required this.description,
-    // required this.subject,
+    required this.subject,
     required this.timeSeconds,
     required this.questions,
     required this.questionsCount,
@@ -35,7 +35,7 @@ class QuizPaperModel {
         title = json['title'] as String,
         imageUrl = json['image_url'] as String?,
         description = json['Description'] as String,
-        //subject = json['subject'] as String,
+        subject = json['subject'] as String,
         timeSeconds = json['time_seconds'] as int,
         questionsCount = 0,
 
@@ -52,7 +52,7 @@ class QuizPaperModel {
         title = snapshot['title'],
         imageUrl = snapshot['image_url'],
         description = snapshot['Description'],
-        //  subject = snapshot['subject'],
+        subject = snapshot['subject'],
         timeSeconds = snapshot['time_seconds'],
         questionsCount = snapshot['questions_count'] as int,
         questions = [];
@@ -62,7 +62,7 @@ class QuizPaperModel {
         'title': title,
         'image_url': imageUrl,
         'Description': description,
-        //  'subject': subject,
+        'subject': subject,
         'time_seconds': timeSeconds,
         // 'questions':
         //     questions == null ? [] : questions!.map((e) => e.toJson()).toList()
