@@ -5,10 +5,10 @@ import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'package:quizzle/configs/configs.dart';
 import 'package:quizzle/controllers/controllers.dart';
 import 'package:quizzle/widgets/widgets.dart';
-import '../onboarding/custom_drawer.dart';
+import '../../../onboarding/custom_drawer.dart';
 
-class maths extends GetView<MyDrawerController> {
-  const maths({Key? key}) : super(key: key);
+class civic extends GetView<MyDrawerController> {
+  const civic({Key? key}) : super(key: key);
 
   // static const String routeName = '/home';
 
@@ -93,14 +93,16 @@ class maths extends GetView<MyDrawerController> {
                             itemCount: _quizePprContoller.allPapers.length,
                             itemBuilder: (BuildContext context, int index) {
                               //hero
-                              if (_quizePprContoller.allPapers[index].subject ==
-                                  "maths") {
+                              if (_quizePprContoller.allPapers[index].topic ==
+                                  "civics") {
                                 return QuizPaperCard(
                                   model: _quizePprContoller.allPapers[index],
                                 );
                               } else {
+                                mainAxisAlignment:
+                                MainAxisAlignment.end;
                                 return const SizedBox(
-                                  height: 20,
+                                  height: 0.000000000001,
                                 );
 
                                 /*return QuizPaperCard(

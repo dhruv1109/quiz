@@ -55,8 +55,11 @@ class PapersDataUploader extends GetxController {
             "image_url": paper.imageUrl,
             "Description": paper.description,
             "subject": paper.subject,
+            "topic": paper.topic,
+            "practice": paper.practice,
             "time_seconds": paper.timeSeconds,
-            "questions_count": paper.questions == null ? 0 : paper.questions!.length
+            "questions_count":
+                paper.questions == null ? 0 : paper.questions!.length
           },
         );
 

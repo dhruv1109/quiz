@@ -3,10 +3,14 @@ import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:get/get.dart';
 import 'package:quizzle/configs/configs.dart';
 import 'package:quizzle/controllers/controllers.dart';
+import 'package:quizzle/screens/home/practice_subject/practicesst.dart';
 import 'package:quizzle/widgets/widgets.dart';
 import 'package:flutter_tts/flutter_tts.dart';
-import 'PracticeSubject.dart';
 import '../onboarding/custom_drawer.dart';
+import 'practice_subject/practicemaths.dart';
+import 'practice_subject/practicescience.dart';
+import 'practice_subject/practicesst.dart';
+import 'practice_subject/practiceenglish.dart';
 
 class PracticeTest extends GetView<MyDrawerController> {
   PracticeTest({Key? key}) : super(key: key);
@@ -23,25 +27,25 @@ class PracticeTest extends GetView<MyDrawerController> {
     Future _speak() async {
       await flutterTts.setLanguage("hi-IN");
       await flutterTts.setPitch(1);
-      await flutterTts.speak("Physics");
+      await flutterTts.speak("English");
     }
 
     Future _speak1() async {
       await flutterTts.setLanguage("hi-IN");
       await flutterTts.setPitch(1);
-      await flutterTts.speak("Chemistry");
+      await flutterTts.speak("Maths");
     }
 
     Future _speak2() async {
       await flutterTts.setLanguage("hi-IN");
       await flutterTts.setPitch(1);
-      await flutterTts.speak("English");
+      await flutterTts.speak("Science");
     }
 
     Future _speak3() async {
       await flutterTts.setLanguage("hi-IN");
       await flutterTts.setPitch(1);
-      await flutterTts.speak("Maths");
+      await flutterTts.speak("SST");
     }
 
     QuizPaperController _quizePprContoller = Get.find();
@@ -118,7 +122,7 @@ class PracticeTest extends GetView<MyDrawerController> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => PracticeSubject()),
+                                      builder: (context) => english()),
                                 );
                               },
                               child: Column(
@@ -128,7 +132,7 @@ class PracticeTest extends GetView<MyDrawerController> {
                                     "https://st2.depositphotos.com/5425740/9532/v/380/depositphotos_95328970-stock-illustration-vector-group-of-students.jpg",
                                     height: 120,
                                   ),
-                                  Text('Physics'),
+                                  Text('English'),
                                 ],
                               ),
                             ),
@@ -140,7 +144,7 @@ class PracticeTest extends GetView<MyDrawerController> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => PracticeSubject()),
+                                      builder: (context) => maths()),
                                 );
                               },
                               child: Column(
@@ -150,7 +154,7 @@ class PracticeTest extends GetView<MyDrawerController> {
                                     "https://st2.depositphotos.com/5425740/9532/v/380/depositphotos_95328970-stock-illustration-vector-group-of-students.jpg",
                                     height: 120,
                                   ),
-                                  Text('Chemistry'),
+                                  Text('Maths'),
                                 ],
                               ),
                             ),
@@ -162,7 +166,7 @@ class PracticeTest extends GetView<MyDrawerController> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => PracticeSubject()),
+                                      builder: (context) => science()),
                                 );
                               },
                               child: Column(
@@ -172,7 +176,7 @@ class PracticeTest extends GetView<MyDrawerController> {
                                     "https://www.smallbizdaily.com/wp-content/uploads/2021/01/shutterstock_1746002939-1.jpg",
                                     height: 120,
                                   ),
-                                  Text('English'),
+                                  Text('Science'),
                                 ],
                               ),
                             ),
@@ -184,7 +188,7 @@ class PracticeTest extends GetView<MyDrawerController> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => PracticeSubject()),
+                                      builder: (context) => sst()),
                                 );
                               },
                               child: Column(
@@ -194,7 +198,7 @@ class PracticeTest extends GetView<MyDrawerController> {
                                     "https://st2.depositphotos.com/5425740/9532/v/380/depositphotos_95328970-stock-illustration-vector-group-of-students.jpg",
                                     height: 120,
                                   ),
-                                  Text('Maths'),
+                                  Text('SST'),
                                 ],
                               ),
                             ),

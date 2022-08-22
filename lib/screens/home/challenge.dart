@@ -3,15 +3,15 @@ import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:get/get.dart';
 import 'package:quizzle/configs/configs.dart';
 import 'package:quizzle/controllers/controllers.dart';
-import 'package:quizzle/screens/home/physics.dart';
+import 'package:quizzle/screens/home/challenge/physics.dart';
 import 'package:quizzle/widgets/widgets.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import '../onboarding/Calculator.dart';
 import '../onboarding/custom_drawer.dart';
-import 'physics.dart';
-import 'chemistry.dart';
-import 'maths.dart';
-import 'English.dart';
+import 'challenge/physics.dart';
+import 'challenge/chemistry.dart';
+import 'challenge/maths.dart';
+import 'challenge/english.dart';
 
 class Challenge extends GetView<MyDrawerController> {
   Challenge({Key? key}) : super(key: key);

@@ -5,11 +5,13 @@ import 'package:quizzle/configs/configs.dart';
 import 'package:quizzle/controllers/controllers.dart';
 import 'package:quizzle/widgets/widgets.dart';
 import 'package:flutter_tts/flutter_tts.dart';
-import 'PracticeTopic.dart';
-import '../onboarding/custom_drawer.dart';
+//import 'PracticeTopic.dart';
+import '../../onboarding/custom_drawer.dart';
+import '../practicetopic/maths/arithematic.dart';
+import '../practicetopic/maths/table.dart';
 
-class PracticeSubject extends GetView<MyDrawerController> {
-  PracticeSubject({Key? key}) : super(key: key);
+class maths extends GetView<MyDrawerController> {
+  maths({Key? key}) : super(key: key);
 
   final FlutterTts flutterTts = FlutterTts();
 
@@ -17,31 +19,19 @@ class PracticeSubject extends GetView<MyDrawerController> {
     Future _speakk() async {
       await flutterTts.setLanguage("hi-IN");
       await flutterTts.setPitch(1);
-      await flutterTts.speak("select the chapter");
+      await flutterTts.speak("select the chapter db");
     }
 
     Future _speak() async {
       await flutterTts.setLanguage("hi-IN");
       await flutterTts.setPitch(1);
-      await flutterTts.speak("Physics");
+      await flutterTts.speak("Arithematic");
     }
 
     Future _speak1() async {
       await flutterTts.setLanguage("hi-IN");
       await flutterTts.setPitch(1);
-      await flutterTts.speak("Chemistry");
-    }
-
-    Future _speak2() async {
-      await flutterTts.setLanguage("hi-IN");
-      await flutterTts.setPitch(1);
-      await flutterTts.speak("English");
-    }
-
-    Future _speak3() async {
-      await flutterTts.setLanguage("hi-IN");
-      await flutterTts.setPitch(1);
-      await flutterTts.speak("Maths");
+      await flutterTts.speak("Tables");
     }
 
     QuizPaperController _quizePprContoller = Get.find();
@@ -118,7 +108,7 @@ class PracticeSubject extends GetView<MyDrawerController> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => PracticeTopic()),
+                                      builder: (context) => arithematic()),
                                 );
                               },
                               child: Column(
@@ -128,7 +118,7 @@ class PracticeSubject extends GetView<MyDrawerController> {
                                     "https://st2.depositphotos.com/5425740/9532/v/380/depositphotos_95328970-stock-illustration-vector-group-of-students.jpg",
                                     height: 120,
                                   ),
-                                  Text('Physics'),
+                                  Text('Arithematic'),
                                 ],
                               ),
                             ),
@@ -140,7 +130,7 @@ class PracticeSubject extends GetView<MyDrawerController> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => PracticeTopic()),
+                                      builder: (context) => table()),
                                 );
                               },
                               child: Column(
@@ -150,51 +140,7 @@ class PracticeSubject extends GetView<MyDrawerController> {
                                     "https://st2.depositphotos.com/5425740/9532/v/380/depositphotos_95328970-stock-illustration-vector-group-of-students.jpg",
                                     height: 120,
                                   ),
-                                  Text('Chemistry'),
-                                ],
-                              ),
-                            ),
-                          ),
-                          Card(
-                            child: InkWell(
-                              onTap: () => _speak2(),
-                              onDoubleTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => PracticeTopic()),
-                                );
-                              },
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  Image.network(
-                                    "https://www.smallbizdaily.com/wp-content/uploads/2021/01/shutterstock_1746002939-1.jpg",
-                                    height: 120,
-                                  ),
-                                  Text('English'),
-                                ],
-                              ),
-                            ),
-                          ),
-                          Card(
-                            child: InkWell(
-                              onTap: () => _speak3(),
-                              onDoubleTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => PracticeTopic()),
-                                );
-                              },
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  Image.network(
-                                    "https://st2.depositphotos.com/5425740/9532/v/380/depositphotos_95328970-stock-illustration-vector-group-of-students.jpg",
-                                    height: 120,
-                                  ),
-                                  Text('Maths practop'),
+                                  Text('Table'),
                                 ],
                               ),
                             ),

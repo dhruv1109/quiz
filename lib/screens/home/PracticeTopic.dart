@@ -7,8 +7,8 @@ import 'package:quizzle/controllers/controllers.dart';
 import 'package:quizzle/widgets/widgets.dart';
 import '../onboarding/custom_drawer.dart';
 
-class english extends GetView<MyDrawerController> {
-  const english({Key? key}) : super(key: key);
+class PracticeTopic extends GetView<MyDrawerController> {
+  const PracticeTopic({Key? key}) : super(key: key);
 
   // static const String routeName = '/home';
 
@@ -81,7 +81,6 @@ class english extends GetView<MyDrawerController> {
                         () => LiquidPullToRefresh(
                           height: 150,
                           springAnimationDurationInMilliseconds: 500,
-                          //backgroundColor: Theme.of(context).primaryColor.withOpacity(0.1),
                           color:
                               Theme.of(context).primaryColor.withOpacity(0.5),
                           onRefresh: () async {
@@ -94,7 +93,7 @@ class english extends GetView<MyDrawerController> {
                             itemBuilder: (BuildContext context, int index) {
                               //hero
                               if (_quizePprContoller.allPapers[index].subject ==
-                                  "english") {
+                                  "chemistry") {
                                 return QuizPaperCard(
                                   model: _quizePprContoller.allPapers[index],
                                 );
@@ -102,10 +101,6 @@ class english extends GetView<MyDrawerController> {
                                 return const SizedBox(
                                   height: 20,
                                 );
-
-                                /*return QuizPaperCard(
-                                  model: _quizePprContoller.allPapers[100],
-                                );*/
                               }
                             },
                             separatorBuilder:

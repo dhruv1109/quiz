@@ -41,9 +41,9 @@ class QuizPaperController extends GetxController {
     if (_authController.isLogedIn()) {
       if (isTryAgain) {
         Get.back();
-        Get.offNamed(QuizeScreen.routeName, arguments: paper, preventDuplicates: false);
+         Get.offNamed(QuizeScreen.routeName, arguments: paper, preventDuplicates: false);
       } else {
-        Get.toNamed(QuizeScreen.routeName, arguments: paper);
+         Get.toNamed(QuizeScreen.routeName, arguments: paper);
       }
     } else {
       _authController.showLoginAlertDialog();
