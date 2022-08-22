@@ -5,11 +5,11 @@ import 'package:quizzle/configs/configs.dart';
 import 'package:quizzle/controllers/controllers.dart';
 import 'package:quizzle/widgets/widgets.dart';
 import 'package:flutter_tts/flutter_tts.dart';
-import '../onboarding/Calculator.dart';
 import '../onboarding/custom_drawer.dart';
 import 'learn.dart';
 import 'challenge.dart';
 import 'PracticeTest.dart';
+import 'read.dart';
 
 class HomeScreen extends GetView<MyDrawerController> {
   HomeScreen({Key? key}) : super(key: key);
@@ -184,6 +184,12 @@ class HomeScreen extends GetView<MyDrawerController> {
                       Card(
                         child: InkWell(
                           onTap: () => _speak3(),
+                          onDoubleTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => read()),
+                            );
+                          },
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[

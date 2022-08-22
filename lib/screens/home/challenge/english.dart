@@ -103,7 +103,7 @@ class english extends GetView<MyDrawerController> {
                                 );
                               } else {
                                 return const SizedBox(
-                                  height: 1,
+                                  height: 0,
                                 );
 
                                 /*return QuizPaperCard(
@@ -114,7 +114,7 @@ class english extends GetView<MyDrawerController> {
                             separatorBuilder:
                                 (BuildContext context, int index) {
                               return const SizedBox(
-                                height: 20,
+                                height: 0,
                               );
                             },
                           ),

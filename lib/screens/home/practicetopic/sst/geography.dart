@@ -116,7 +116,7 @@ class geography extends GetView<MyDrawerController> {
                             separatorBuilder:
                                 (BuildContext context, int index) {
                               return const SizedBox(
-                                height: 20,
+                                height: 0,
                               );
                             },
                           ),

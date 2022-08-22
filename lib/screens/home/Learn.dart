@@ -32,21 +32,6 @@ class _LearnState extends State<Learn> {
     });
   }
 
-  // void _handleCommand(Map<String, dynamic> command) {
-  //   switch (command["command"]) {
-  //     case "Braille Learn":
-  //       Navigator.push(
-  //         context,
-  //         MaterialPageRoute(builder: (context) => Practice()),
-  //       );
-  //       break;
-  //     // case "back":
-  //     //   Navigator.pop(context);
-  //     //   break;
-  //     default:
-  //       debugPrint("Unknown command");
-  //   }
-  // }
 
   dynamic displaytxt = 20;
   //Button Widget

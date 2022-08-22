@@ -95,14 +95,15 @@ class chemistry extends GetView<MyDrawerController> {
                               //hero
                               if (_quizePprContoller.allPapers[index].subject ==
                                       "chemistry" &&
-                                  _quizePprContoller.allPapers[index].practice ==
+                                  _quizePprContoller
+                                          .allPapers[index].practice ==
                                       "0") {
                                 return QuizPaperCard(
                                   model: _quizePprContoller.allPapers[index],
                                 );
                               } else {
                                 return const SizedBox(
-                                  height: 1,
+                                  height: 0,
                                 );
 
                                 /*return QuizPaperCard(
@@ -113,7 +114,7 @@ class chemistry extends GetView<MyDrawerController> {
                             separatorBuilder:
                                 (BuildContext context, int index) {
                               return const SizedBox(
-                                height: 20,
+                                height: 0,
                               );
                             },
                           ),

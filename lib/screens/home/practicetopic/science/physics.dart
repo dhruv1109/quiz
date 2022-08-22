@@ -105,7 +105,7 @@ class physics extends GetView<MyDrawerController> {
                                 mainAxisAlignment:
                                 MainAxisAlignment.end;
                                 return const SizedBox(
-                                  height: 0.000000000001,
+                                  height: 0,
                                 );
 
                                 /*return QuizPaperCard(
@@ -116,7 +116,7 @@ class physics extends GetView<MyDrawerController> {
                             separatorBuilder:
                                 (BuildContext context, int index) {
                               return const SizedBox(
-                                height: 20,
+                                height: 0,
                               );
                             },
                           ),

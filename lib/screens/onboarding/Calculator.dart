@@ -9,10 +9,10 @@ speak(String text) {
   flutterTts.speak(text);
 }
 
-dynamic text = ' ';
+dynamic text = '      ';
 dynamic numOne = '';
 dynamic result = '';
-dynamic finalResult = ' ';
+dynamic finalResult = '      ';
 
 void main() => runApp(MyApp());
 
@@ -70,13 +70,14 @@ class _CalculatorState extends State<Calculator> {
         child: GestureDetector(
           onHorizontalDragEnd: (DragEndDetails details) {
             print('horizontal');
-            if (finalResult != null && finalResult.length > 0) {
+            if (finalResult != null && finalResult.length > 6) {
               text = text.substring(0, text.length - 1);
               finalResult = finalResult.substring(0, finalResult.length - 1);
 
               setState(
                 () {
-                  text = finalResult;
+                  text = finalResult.substring(
+                      finalResult.length - 6, finalResult.length);
                 },
               );
             }
@@ -90,7 +91,8 @@ class _CalculatorState extends State<Calculator> {
 
               setState(
                 () {
-                  text = finalResult;
+                  text = finalResult.substring(
+                      finalResult.length - 6, finalResult.length);
                 },
               );
             }
@@ -355,7 +357,7 @@ class _CalculatorState extends State<Calculator> {
     }
 
     setState(() {
-      text = finalResult;
+      text = finalResult.substring(finalResult.length - 6, finalResult.length);
     });
   }
 }

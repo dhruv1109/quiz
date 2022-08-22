@@ -102,11 +102,8 @@ class letter extends GetView<MyDrawerController> {
                                   model: _quizePprContoller.allPapers[index],
                                 );
                               } else {
-                                mainAxisAlignment:
-                                MainAxisAlignment.end;
-
                                 return const SizedBox(
-                                  height: 0.000000000001,
+                                  height: 0,
                                 );
 
                                 /*return QuizPaperCard(
@@ -117,7 +114,7 @@ class letter extends GetView<MyDrawerController> {
                             separatorBuilder:
                                 (BuildContext context, int index) {
                               return const SizedBox(
-                                height: 20,
+                                height: 0,
                               );
                             },
                           ),
