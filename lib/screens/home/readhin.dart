@@ -6,11 +6,11 @@ import 'package:quizzle/configs/configs.dart';
 import 'package:quizzle/controllers/controllers.dart';
 import 'package:quizzle/widgets/widgets.dart';
 import '../onboarding/custom_drawer.dart';
-import 'readeng.dart';
-import 'readhin.dart';
+import '../home/StoryHindi/hindi.dart';
+import '../home/StoryHindi/hin.dart';
 
-class PdfRead extends GetView<MyDrawerController> {
-  PdfRead({Key? key}) : super(key: key);
+class ReadHin extends GetView<MyDrawerController> {
+  ReadHin({Key? key}) : super(key: key);
 
   final FlutterTts flutterTts = FlutterTts();
 
@@ -34,6 +34,19 @@ class PdfRead extends GetView<MyDrawerController> {
       await flutterTts.speak("Double Tap to study hindi");
     }
 
+    Future _speak2() async {
+      await flutterTts.setLanguage("hi-IN");
+      await flutterTts.setPitch(1);
+      await flutterTts.speak("नया Gyaan ka sagar");
+    }
+
+    Future _speak3() async {
+      await flutterTts.setLanguage("hi-IN");
+      await flutterTts.setPitch(1);
+      await flutterTts.speak("Goga Humara Masiha , Goga Sabse Mahan");
+    }
+
+    QuizPaperController _quizePprContoller = Get.find();
     return Scaffold(
         body: GetBuilder<MyDrawerController>(
       builder: (_) => ZoomDrawer(
@@ -105,8 +118,7 @@ class PdfRead extends GetView<MyDrawerController> {
                           onDoubleTap: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(
-                                  builder: (context) => ReadEng()),
+                              MaterialPageRoute(builder: (context) => Hindi()),
                             );
                           },
                           child: Column(
@@ -116,7 +128,7 @@ class PdfRead extends GetView<MyDrawerController> {
                                 "https://st2.depositphotos.com/5425740/9532/v/380/depositphotos_95328970-stock-illustration-vector-group-of-students.jpg",
                                 height: 120,
                               ),
-                              Text('English'),
+                              Text('story'),
                             ],
                           ),
                         ),
@@ -127,8 +139,7 @@ class PdfRead extends GetView<MyDrawerController> {
                           onDoubleTap: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(
-                                  builder: (context) => ReadHin()),
+                              MaterialPageRoute(builder: (context) => Hin()),
                             );
                           },
                           child: Column(
@@ -138,7 +149,7 @@ class PdfRead extends GetView<MyDrawerController> {
                                 "https://st2.depositphotos.com/5425740/9532/v/380/depositphotos_95328970-stock-illustration-vector-group-of-students.jpg",
                                 height: 120,
                               ),
-                              Text('Hindi'),
+                              Text('story'),
                             ],
                           ),
                         ),
