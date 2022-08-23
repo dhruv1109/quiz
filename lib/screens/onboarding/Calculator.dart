@@ -70,14 +70,25 @@ class _CalculatorState extends State<Calculator> {
         child: GestureDetector(
           onHorizontalDragEnd: (DragEndDetails details) {
             print('horizontal');
-            if (finalResult != null && finalResult.length > 6) {
+            if (finalResult != null && finalResult.length > 11) {
               text = text.substring(0, text.length - 1);
               finalResult = finalResult.substring(0, finalResult.length - 1);
 
               setState(
                 () {
-                  text = finalResult.substring(
-                      finalResult.length - 6, finalResult.length);
+                  num length = finalResult.length - 11;
+
+                  if (length == 0) {
+                    text = finalResult.substring(
+                        finalResult.length - 11, finalResult.length);
+                  } else if (length < 6) {
+                    text = finalResult.substring(
+                        finalResult.length - (11 - (1.5 * (length - 1)).ceil()),
+                        finalResult.length);
+                  } else {
+                    text = finalResult.substring(
+                        finalResult.length - (6), finalResult.length);
+                  }
                 },
               );
             }
@@ -91,8 +102,19 @@ class _CalculatorState extends State<Calculator> {
 
               setState(
                 () {
-                  text = finalResult.substring(
-                      finalResult.length - 6, finalResult.length);
+                  num length = finalResult.length - 11;
+
+                  if (length == 0) {
+                    text = finalResult.substring(
+                        finalResult.length - 11, finalResult.length);
+                  } else if (length < 6) {
+                    text = finalResult.substring(
+                        finalResult.length - (11 - (1.5 * (length - 1)).ceil()),
+                        finalResult.length);
+                  } else {
+                    text = finalResult.substring(
+                        finalResult.length - (6), finalResult.length);
+                  }
                 },
               );
             }
@@ -356,8 +378,22 @@ class _CalculatorState extends State<Calculator> {
         }
     }
 
-    setState(() {
-      text = finalResult.substring(finalResult.length - 6, finalResult.length);
-    });
+    setState(
+      () {
+        num length = finalResult.length - 11;
+
+        if (length == 0) {
+          text = finalResult.substring(
+              finalResult.length - 11, finalResult.length);
+        } else if (length < 6) {
+          text = finalResult.substring(
+              finalResult.length - (11 - (1.5 * (length - 1)).ceil()),
+              finalResult.length);
+        } else {
+          text = finalResult.substring(
+              finalResult.length - (6), finalResult.length);
+        }
+      },
+    );
   }
 }

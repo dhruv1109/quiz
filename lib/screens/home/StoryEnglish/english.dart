@@ -5,47 +5,37 @@ import 'package:get/get.dart';
 import 'package:quizzle/configs/configs.dart';
 import 'package:quizzle/controllers/controllers.dart';
 import 'package:quizzle/widgets/widgets.dart';
-import '../onboarding/custom_drawer.dart';
-import '../home/StoryEnglish/english.dart';
+import '../../onboarding/custom_drawer.dart';
+import 'SingleRead.dart';
+import 'speech_text.dart';
+import 'package:flutter/services.dart';
+import 'package:syncfusion_flutter_pdf/pdf.dart';
 
-class PdfRead extends GetView<MyDrawerController> {
-  PdfRead({Key? key}) : super(key: key);
+class English extends GetView<MyDrawerController> {
+  English({Key? key}) : super(key: key);
 
   final FlutterTts flutterTts = FlutterTts();
 
+  Future _speakk(String text) async {
+    await flutterTts.setLanguage("hi-IN");
+    await flutterTts.setPitch(1);
+    await flutterTts.speak(text);
+  }
+
+  Future _speak() async {
+    await flutterTts.setLanguage("hi-IN");
+    await flutterTts.setPitch(1);
+    await flutterTts.speak("Double tap to Listen full book");
+  }
+
+  Future _speak1() async {
+    await flutterTts.setLanguage("hi-IN");
+    await flutterTts.setPitch(1);
+    await flutterTts.speak("Double Tap to input page number");
+  }
+
   @override
   Widget build(BuildContext context) {
-    Future _speakk(String text) async {
-      await flutterTts.setLanguage("hi-IN");
-      await flutterTts.setPitch(1);
-      await flutterTts.speak(text);
-    }
-
-    Future _speak() async {
-      await flutterTts.setLanguage("hi-IN");
-      await flutterTts.setPitch(1);
-      await flutterTts.speak("Double Tap to study english");
-    }
-
-    Future _speak1() async {
-      await flutterTts.setLanguage("hi-IN");
-      await flutterTts.setPitch(1);
-      await flutterTts.speak("Double Tap to study hindi");
-    }
-
-    Future _speak2() async {
-      await flutterTts.setLanguage("hi-IN");
-      await flutterTts.setPitch(1);
-      await flutterTts.speak("नया Gyaan ka sagar");
-    }
-
-    Future _speak3() async {
-      await flutterTts.setLanguage("hi-IN");
-      await flutterTts.setPitch(1);
-      await flutterTts.speak("Goga Humara Masiha , Goga Sabse Mahan");
-    }
-
-    QuizPaperController _quizePprContoller = Get.find();
     return Scaffold(
         body: GetBuilder<MyDrawerController>(
       builder: (_) => ZoomDrawer(
@@ -90,7 +80,7 @@ class PdfRead extends GetView<MyDrawerController> {
                                   _label = '  Hello ${user.displayName}';
                                 }
                                 String promote =
-                                    'Select the subject you want to read';
+                                    'Select the way you want to read';
                                 _speakk(promote);
                                 return Text(_label,
                                     style: kDetailsTS.copyWith(
@@ -114,13 +104,7 @@ class PdfRead extends GetView<MyDrawerController> {
                       Card(
                         child: InkWell(
                           onTap: () => _speak(),
-                          onDoubleTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => English()),
-                            );
-                          },
+                          onDoubleTap: () => _extractAllText(),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
@@ -128,7 +112,7 @@ class PdfRead extends GetView<MyDrawerController> {
                                 "https://st2.depositphotos.com/5425740/9532/v/380/depositphotos_95328970-stock-illustration-vector-group-of-students.jpg",
                                 height: 120,
                               ),
-                              Text('English'),
+                              Text('Braille Learn'),
                             ],
                           ),
                         ),
@@ -140,7 +124,7 @@ class PdfRead extends GetView<MyDrawerController> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => English()),
+                                  builder: (context) => SpeechText()),
                             );
                           },
                           child: Column(
@@ -150,7 +134,7 @@ class PdfRead extends GetView<MyDrawerController> {
                                 "https://st2.depositphotos.com/5425740/9532/v/380/depositphotos_95328970-stock-illustration-vector-group-of-students.jpg",
                                 height: 120,
                               ),
-                              Text('Hindi'),
+                              Text('Challenges'),
                             ],
                           ),
                         ),
@@ -164,5 +148,45 @@ class PdfRead extends GetView<MyDrawerController> {
         ),
       ),
     ));
+  }
+
+  Future<void> _extractAllText() async {
+    PdfDocument document =
+        PdfDocument(inputBytes: await _readDocumentData('e1.pdf'));
+    PdfTextExtractor extractor = PdfTextExtractor(document);
+    String text = extractor.extractText();
+    _showResult(text);
+    //  _speakk(text);
+  }
+
+  Future<List<int>> _readDocumentData(String name) async {
+    final ByteData data = await rootBundle.load('assets/$name');
+    return data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
+  }
+
+  void _showResult(String text) {
+    _speakk(text);
+
+    Widget build(BuildContext context) {
+      return AlertDialog(
+        title: Text('Extracted text'),
+        content: Scrollbar(
+          child: SingleChildScrollView(
+            child: Text(text),
+            physics:
+                BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+          ),
+        ),
+        actions: [
+          FlatButton(
+            child: Text('Close'),
+            onPressed: () {
+              Navigator.of(context).pop();
+              _speakk("Closed");
+            },
+          )
+        ],
+      );
+    }
   }
 }

@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:alan_voice/alan_voice.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 
-dynamic finalResult = ' ';
-dynamic text = ' ';
+dynamic finalResult = '           ';
+dynamic text = '           ';
+dynamic flag = 0;
 final FlutterTts flutterTts = FlutterTts();
 
 speak(String text) {
@@ -31,7 +32,6 @@ class _LearnState extends State<Learn> {
       debugPrint("got new command ${command.data['command']}");
     });
   }
-
 
   dynamic displaytxt = 20;
   //Button Widget
@@ -73,13 +73,26 @@ class _LearnState extends State<Learn> {
         child: GestureDetector(
           onHorizontalDragEnd: (DragEndDetails details) {
             print('horizontal');
-            if (finalResult != null && finalResult.length > 0) {
+            speak("back space");
+            if (finalResult != null && finalResult.length > 11) {
               text = text.substring(0, text.length - 1);
               finalResult = finalResult.substring(0, finalResult.length - 1);
 
               setState(
                 () {
-                  text = finalResult;
+                  num length = finalResult.length - 11;
+
+                  if (length == 0) {
+                    text = finalResult.substring(
+                        finalResult.length - 11, finalResult.length);
+                  } else if (length < 6) {
+                    text = finalResult.substring(
+                        finalResult.length - (11 - (1.5 * (length - 1)).ceil()),
+                        finalResult.length);
+                  } else {
+                    text = finalResult.substring(
+                        finalResult.length - (6), finalResult.length);
+                  }
                 },
               );
             }
@@ -87,19 +100,32 @@ class _LearnState extends State<Learn> {
 
           onVerticalDragEnd: (DragEndDetails details) {
             print('vertical');
+            speak("space");
             if (finalResult != null && finalResult.length > 0) {
               text = text + ' ';
               finalResult = finalResult + ' ';
 
               setState(
                 () {
-                  text = finalResult;
+                  num length = finalResult.length - 11;
+
+                  if (length == 0) {
+                    text = finalResult.substring(
+                        finalResult.length - 11, finalResult.length);
+                  } else if (length < 6) {
+                    text = finalResult.substring(
+                        finalResult.length - (11 - (1.5 * (length - 1)).ceil()),
+                        finalResult.length);
+                  } else {
+                    text = finalResult.substring(
+                        finalResult.length - (6), finalResult.length);
+                  }
                 },
               );
             }
           },
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -363,8 +389,22 @@ class _LearnState extends State<Learn> {
         }
     }
 
-    setState(() {
-      text = finalResult;
-    });
+    setState(
+      () {
+        num length = finalResult.length - 11;
+
+        if (length == 0) {
+          text = finalResult.substring(
+              finalResult.length - 11, finalResult.length);
+        } else if (length < 6) {
+          text = finalResult.substring(
+              finalResult.length - (11 - (1.5 * (length - 1)).ceil()),
+              finalResult.length);
+        } else {
+          text = finalResult.substring(
+              finalResult.length - (6), finalResult.length);
+        }
+      },
+    );
   }
 }

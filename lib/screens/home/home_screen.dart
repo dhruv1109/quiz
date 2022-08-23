@@ -187,7 +187,7 @@ class HomeScreen extends GetView<MyDrawerController> {
                           onDoubleTap: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => read()),
+                              MaterialPageRoute(builder: (context) => PdfRead()),
                             );
                           },
                           child: Column(

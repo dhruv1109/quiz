@@ -29,32 +29,20 @@ class SpeechTextState extends State<SpeechText> {
     super.initState();
     _initSpeech();
   }
-
-  /// This has to happen only once per app
   void _initSpeech() async {
     _speechEnabled = await _speechToText.initialize();
     setState(() {});
   }
-
-  /// Each time to start a speech recognition session
   void _startListening() async {
     await _speechToText.listen(onResult: _onSpeechResult);
     setState(() {});
   }
-
-  /// Manually stop the active speech recognition session
-  /// Note that there are also timeouts that each platform enforces
-  /// and the SpeechToText plugin supports setting timeouts on the
-  /// listen method.
   void _stopListening() async {
     await _speechToText.stop();
     setState(() {});
   }
 
   var pg = 0;
-
-  /// This is the callback that the SpeechToText plugin calls when
-  /// the platform returns recognized words.
   void _onSpeechResult(SpeechRecognitionResult result) {
     setState(() {
       _lastWords = result.recognizedWords;
@@ -118,17 +106,10 @@ class SpeechTextState extends State<SpeechText> {
   }
 
   Future<void> _extractTextFromSpecificPage(int page) async {
-    //Load the existing PDF document.
     PdfDocument document =
-        PdfDocument(inputBytes: await _readDocumentData('sample.pdf'));
-
-    //Create the new instance of the PdfTextExtractor.
+        PdfDocument(inputBytes: await _readDocumentData('e1.pdf'));
     PdfTextExtractor extractor = PdfTextExtractor(document);
-
-    //Extract all the text from the first page of the PDF document.
     String text = extractor.extractText(startPageIndex: page);
-
-    //Display the text.
     _showResult(text);
     // _speakk(text);
   }
