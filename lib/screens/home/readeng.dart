@@ -126,11 +126,13 @@ class ReadEng extends GetView<MyDrawerController> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
-                              Image.network(
-                                "https://st2.depositphotos.com/5425740/9532/v/380/depositphotos_95328970-stock-illustration-vector-group-of-students.jpg",
-                                height: 120,
-                              ),
-                              Text('Tortios and Heir'),
+                             Container(
+                                  child: const Image(
+                                  image: AssetImage('assets/images/lion.jpg'),
+                                  height: 120,
+            ),
+          ),
+                              Text('The Lion and Rabbit'),
                             ],
                           ),
                         ),
@@ -147,11 +149,13 @@ class ReadEng extends GetView<MyDrawerController> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
-                              Image.network(
-                                "https://st2.depositphotos.com/5425740/9532/v/380/depositphotos_95328970-stock-illustration-vector-group-of-students.jpg",
-                                height: 120,
-                              ),
-                              Text('Story'),
+                             Container(
+                                  child: const Image(
+                                  image: AssetImage('assets/images/hunter.png'),
+                                  height: 120,
+            ),
+          ),
+                              Text('The Hunter and the Pigeons'),
                             ],
                           ),
                         ),

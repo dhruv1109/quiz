@@ -128,10 +128,12 @@ class HomeScreen extends GetView<MyDrawerController> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
-                              Image.network(
-                                "https://st2.depositphotos.com/5425740/9532/v/380/depositphotos_95328970-stock-illustration-vector-group-of-students.jpg",
-                                height: 120,
-                              ),
+                             Container(
+                                  child: const Image(
+                                  image: AssetImage('assets/images/braille_learn.jpeg'),
+                                  height: 120,
+            ),
+          ),
                               Text('Braille Learn'),
                             ],
                           ),
@@ -150,10 +152,12 @@ class HomeScreen extends GetView<MyDrawerController> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
-                              Image.network(
-                                "https://st2.depositphotos.com/5425740/9532/v/380/depositphotos_95328970-stock-illustration-vector-group-of-students.jpg",
-                                height: 120,
-                              ),
+                             Container(
+                                  child: const Image(
+                                  image: AssetImage('assets/images/challenges.jpg'),
+                                  height: 120,
+            ),
+          ),
                               Text('Challenges'),
                             ],
                           ),
@@ -172,10 +176,12 @@ class HomeScreen extends GetView<MyDrawerController> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
-                              Image.network(
-                                "https://www.smallbizdaily.com/wp-content/uploads/2021/01/shutterstock_1746002939-1.jpg",
-                                height: 120,
-                              ),
+                              Container(
+                                  child: const Image(
+                                  image: AssetImage('assets/images/vocabulary.jpg'),
+                                  height: 120,
+            ),
+          ),
                               Text('Vocabulary'),
                             ],
                           ),
@@ -193,10 +199,12 @@ class HomeScreen extends GetView<MyDrawerController> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
-                              Image.network(
-                                "https://st2.depositphotos.com/5425740/9532/v/380/depositphotos_95328970-stock-illustration-vector-group-of-students.jpg",
-                                height: 120,
-                              ),
+                             Container(
+                                  child: const Image(
+                                  image: AssetImage('assets/images/progress.jpg'),
+                                  height: 120,
+            ),
+          ),
                               Text('Progress'),
                             ],
                           ),

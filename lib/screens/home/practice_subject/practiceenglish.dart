@@ -120,10 +120,12 @@ class english extends GetView<MyDrawerController> {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
-                                  Image.network(
-                                    "https://st2.depositphotos.com/5425740/9532/v/380/depositphotos_95328970-stock-illustration-vector-group-of-students.jpg",
-                                    height: 120,
-                                  ),
+                                   Container(
+                                  child: const Image(
+                                  image: AssetImage('assets/images/grammar.jpg'),
+                                  height: 120,
+            ),
+          ),
                                   const Text('Grammar'),
                                 ],
                               ),
@@ -142,10 +144,12 @@ class english extends GetView<MyDrawerController> {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
-                                  Image.network(
-                                    "https://st2.depositphotos.com/5425740/9532/v/380/depositphotos_95328970-stock-illustration-vector-group-of-students.jpg",
-                                    height: 120,
-                                  ),
+                                  Container(
+                                  child: const Image(
+                                  image: AssetImage('assets/images/letter.png'),
+                                  height: 120,
+            ),
+          ),
                                   const Text('Letter'),
                                 ],
                               ),
@@ -164,10 +168,12 @@ class english extends GetView<MyDrawerController> {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
-                                  Image.network(
-                                    "https://www.smallbizdaily.com/wp-content/uploads/2021/01/shutterstock_1746002939-1.jpg",
-                                    height: 120,
-                                  ),
+                                   Container(
+                                  child: const Image(
+                                  image: AssetImage('assets/images/word.png'),
+                                  height: 120,
+            ),
+          ),
                                   const Text('Word'),
                                 ],
                               ),

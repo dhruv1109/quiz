@@ -124,11 +124,13 @@ class ReadHin extends GetView<MyDrawerController> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
-                              Image.network(
-                                "https://st2.depositphotos.com/5425740/9532/v/380/depositphotos_95328970-stock-illustration-vector-group-of-students.jpg",
-                                height: 120,
-                              ),
-                              Text('story'),
+                             Container(
+                                  child: const Image(
+                                  image: AssetImage('assets/images/saap.jpg'),
+                                  height: 120,
+            ),
+          ),
+                              Text('Saap or chiti ki kahani'),
                             ],
                           ),
                         ),
@@ -145,11 +147,13 @@ class ReadHin extends GetView<MyDrawerController> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
-                              Image.network(
-                                "https://st2.depositphotos.com/5425740/9532/v/380/depositphotos_95328970-stock-illustration-vector-group-of-students.jpg",
-                                height: 120,
-                              ),
-                              Text('story'),
+                             Container(
+                                  child: const Image(
+                                  image: AssetImage('assets/images/hare.jpg'),
+                                  height: 120,
+            ),
+          ),
+                              Text('Khargos or Kachue ki Kahani'),
                             ],
                           ),
                         ),

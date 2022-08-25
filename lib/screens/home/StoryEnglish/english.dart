@@ -109,10 +109,12 @@ class English extends GetView<MyDrawerController> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
-                              Image.network(
-                                "https://st2.depositphotos.com/5425740/9532/v/380/depositphotos_95328970-stock-illustration-vector-group-of-students.jpg",
-                                height: 120,
-                              ),
+                              Container(
+                                  child: const Image(
+                                  image: AssetImage('assets/images/ear.jpg'),
+                                  height: 120,
+            ),
+          ),
                               Text('Braille Learn'),
                             ],
                           ),
@@ -131,10 +133,12 @@ class English extends GetView<MyDrawerController> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
-                              Image.network(
-                                "https://st2.depositphotos.com/5425740/9532/v/380/depositphotos_95328970-stock-illustration-vector-group-of-students.jpg",
-                                height: 120,
-                              ),
+                             Container(
+                                  child: const Image(
+                                  image: AssetImage('assets/images/ear.jpg'),
+                                  height: 120,
+            ),
+          ),
                               Text('Challenges'),
                             ],
                           ),
