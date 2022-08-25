@@ -27,38 +27,36 @@ class QuizController extends GetxController {
 
   @override
   void onClose() {
-    if(_timer != null){
+    if (_timer != null) {
       _timer!.cancel();
     }
     super.onClose();
   }
 
-  
-
-  Future<bool> onExitOfQuiz() async{
-    return Dialogs.quizEndDialog( );
+  Future<bool> onExitOfQuiz() async {
+    return Dialogs.quizEndDialog();
   }
 
   void _startTimer(int seconds) {
-    const duration =   Duration(seconds: 1);
+    const duration = Duration(seconds: 1);
     remainSeconds = seconds;
-    _timer =  Timer.periodic(
+    _timer = Timer.periodic(
       duration,
       (Timer timer) {
         if (remainSeconds == 0) {
           timer.cancel();
         } else {
-          int minutes = remainSeconds~/60;
-          int seconds = (remainSeconds%60);
-          time.value = minutes.toString().padLeft(2,"0")+":"+seconds.toString().padLeft(2,"0");
-         remainSeconds--;
+          int minutes = remainSeconds ~/ 60;
+          int seconds = (remainSeconds % 60);
+          time.value = minutes.toString().padLeft(2, "0") +
+              ":" +
+              seconds.toString().padLeft(2, "0");
+          remainSeconds--;
         }
       },
     );
-    
   }
 
- 
   void loadData(QuizPaperModel quizPaper) async {
     quizPaperModel = quizPaper;
     loadingStatus.value = LoadingStatus.loading;
@@ -83,10 +81,13 @@ class QuizController extends GetxController {
         _question.answers = answers;
       }
     } on Exception catch (e) {
-      RegExp exp =  RegExp(r'permission-denied', caseSensitive: false, ); 
-      if(e.toString().contains(exp)){
-         AuthController _authController = Get.find();
-         Get.back();
+      RegExp exp = RegExp(
+        r'permission-denied',
+        caseSensitive: false,
+      );
+      if (e.toString().contains(exp)) {
+        AuthController _authController = Get.find();
+        Get.back();
         _authController.showLoginAlertDialog();
       }
       AppLogger.e(e);
@@ -120,18 +121,17 @@ class QuizController extends GetxController {
   }
 
   void prevQuestion() {
-    if (questionIndex.value <= 0){
-     return;
-    } 
+    if (questionIndex.value <= 0) {
+      return;
+    }
     questionIndex.value--;
     currentQuestion.value = allQuestions[questionIndex.value];
   }
-  
 
-  void jumpToQuestion(int index, {bool isGoBack = true}){
+  void jumpToQuestion(int index, {bool isGoBack = true}) {
     questionIndex.value = index;
     currentQuestion.value = allQuestions[index];
-    if(isGoBack) {
+    if (isGoBack) {
       Get.back();
     }
   }
@@ -141,22 +141,27 @@ class QuizController extends GetxController {
     update(['answers_list', 'answers_review_list']);
   }
 
-  String get completedQuiz{
-    final answeredQuestionCount = allQuestions.where((question) => question.selectedAnswer != null).toList().length;
+  String get completedQuiz {
+    final answeredQuestionCount = allQuestions
+        .where((question) => question.selectedAnswer != null)
+        .toList()
+        .length;
+    speak('$answeredQuestionCount out of ${allQuestions.length} answered');
     return '$answeredQuestionCount out of ${allQuestions.length} answered';
   }
 
-  void complete(){
-     _timer!.cancel();
-     Get.offAndToNamed(Resultcreen.routeName);
+  void complete() {
+    _timer!.cancel();
+    Get.offAndToNamed(Resultcreen.routeName);
   }
 
-  void tryAgain(){
-     Get.find<QuizPaperController>().navigatoQuestions(paper: quizPaperModel, isTryAgain: true);
+  void tryAgain() {
+    Get.find<QuizPaperController>()
+        .navigatoQuestions(paper: quizPaperModel, isTryAgain: true);
   }
 
-  void navigateToHome(){
-     _timer!.cancel();
-     Get.offNamedUntil(HomeScreen.routeName, (route) => false);
+  void navigateToHome() {
+    _timer!.cancel();
+    Get.offNamedUntil(HomeScreen.routeName, (route) => false);
   }
 }

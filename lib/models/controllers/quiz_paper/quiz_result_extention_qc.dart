@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:quizzle/controllers/controllers.dart';
 import 'package:quizzle/firebase/references.dart';
 import 'package:quizzle/services/notification/notification_service.dart';
+import 'package:quizzle/screens/screens.dart';
 
 extension QuizeResult on QuizController {
   int get correctQuestionCount => allQuestions
@@ -13,6 +14,7 @@ extension QuizeResult on QuizController {
       .length;
 
   String get correctAnsweredQuestions {
+    speak('$correctQuestionCount out of ${allQuestions.length} are correct');
     return '$correctQuestionCount out of ${allQuestions.length} are correct';
   }
 
@@ -56,7 +58,8 @@ extension QuizeResult on QuizController {
     Get.find<NotificationService>().showQuizCompletedNotification(
         id: 1,
         title: quizPaperModel.title,
-        body:  'You have just got $points points for ${quizPaperModel.title} -  Tap here to view leaderboard' ,
+        body:
+            'You have just got $points points for ${quizPaperModel.title} -  Tap here to view leaderboard',
         imageUrl: quizPaperModel.imageUrl,
         payload: json.encode(quizPaperModel.toJson()));
     navigateToHome();

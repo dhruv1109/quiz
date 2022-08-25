@@ -6,6 +6,7 @@ import 'bindings/initial_binding.dart';
 import 'controllers/common/theme_controller.dart';
 import 'firebase_options.dart';
 import 'routes/app_routes.dart';
+import 'package:alan_voice/alan_voice.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -50,4 +51,10 @@ Future<void> initFireBase() async {
 //     home: DataUploaderScreen(),
 //   ));
 // }
-
+/*
+class _MyHomePageState extends State<MyHomePage> {
+  _MyHomePageState() {
+    /// Init Alan Button with project key from Alan Studio
+    
+  }
+}*/

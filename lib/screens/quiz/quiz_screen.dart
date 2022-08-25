@@ -69,6 +69,9 @@ class QuizeScreen extends GetView<QuizController> {
                               ),
                               Calculator(),
                               Speech(),
+                              /*  GestureDetector(onDoubleTap: () {
+                                Speech();
+                              }),*/
                             ],
                           ),
                         ),
@@ -136,9 +139,7 @@ class Speech extends GetView<QuizController> {
   const Speech({Key? key}) : super(key: key);
 
   Widget build(BuildContext context) {
-    return Row(
-      children: speak(controller.currentQuestion.value!.question),
-    );
+    return speak(controller.currentQuestion.value!.question);
   }
 }
 
@@ -180,6 +181,9 @@ class _CalculatorState extends State<Calculator> {
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 5),
         child: GestureDetector(
+          onDoubleTap: () {
+            Speech();
+          },
           onHorizontalDragEnd: (DragEndDetails details) {
             print('horizontal');
             speak("back space");
@@ -189,18 +193,18 @@ class _CalculatorState extends State<Calculator> {
 
               setState(
                 () {
-                  num length = finalResult.length - 11;
+                  num length = finalResult.length - 10;
 
-                  if (length == 0) {
+                  if (length <= 1) {
                     text = finalResult.substring(
-                        finalResult.length - 11, finalResult.length);
-                  } else if (length < 6) {
+                        finalResult.length - 9, finalResult.length);
+                  } else if (length < 5) {
                     text = finalResult.substring(
-                        finalResult.length - (11 - (1.5 * (length - 1)).ceil()),
+                        finalResult.length - (9 - (1.5 * (length - 1)).ceil()),
                         finalResult.length);
                   } else {
                     text = finalResult.substring(
-                        finalResult.length - (6), finalResult.length);
+                        finalResult.length - (5), finalResult.length);
                   }
                 },
               );
@@ -216,18 +220,18 @@ class _CalculatorState extends State<Calculator> {
 
               setState(
                 () {
-                  num length = finalResult.length - 11;
+                  num length = finalResult.length - 10;
 
-                  if (length == 0) {
+                  if (length <= 1) {
                     text = finalResult.substring(
-                        finalResult.length - 11, finalResult.length);
-                  } else if (length < 6) {
+                        finalResult.length - 9, finalResult.length);
+                  } else if (length < 5) {
                     text = finalResult.substring(
-                        finalResult.length - (11 - (1.5 * (length - 1)).ceil()),
+                        finalResult.length - (9 - (1.5 * (length - 1)).ceil()),
                         finalResult.length);
                   } else {
                     text = finalResult.substring(
-                        finalResult.length - (6), finalResult.length);
+                        finalResult.length - (5), finalResult.length);
                   }
                 },
               );
@@ -494,18 +498,18 @@ class _CalculatorState extends State<Calculator> {
 
     setState(
       () {
-        num length = finalResult.length - 11;
+        num length = finalResult.length - 10;
 
-        if (length == 0) {
+        if (length <= 1) {
+          text =
+              finalResult.substring(finalResult.length - 9, finalResult.length);
+        } else if (length < 5) {
           text = finalResult.substring(
-              finalResult.length - 11, finalResult.length);
-        } else if (length < 6) {
-          text = finalResult.substring(
-              finalResult.length - (11 - (1.5 * (length - 1)).ceil()),
+              finalResult.length - (9 - (1.5 * (length - 1)).ceil()),
               finalResult.length);
         } else {
           text = finalResult.substring(
-              finalResult.length - (6), finalResult.length);
+              finalResult.length - (5), finalResult.length);
         }
       },
     );

@@ -24,7 +24,7 @@ class _LearnState extends State<Learn> {
     super.initState();
 
     AlanVoice.addButton(
-        "cee74f2a8bcdd635ad1ad9dfb821318e2e956eca572e1d8b807a3e2338fdd0dc/stage",
+        "3b3f8b63af760e8e2883fc51192072f02e956eca572e1d8b807a3e2338fdd0dc/stage",
         buttonAlign: AlanVoice.BUTTON_ALIGN_RIGHT);
 
     AlanVoice.onCommand.add((command) async {
@@ -42,6 +42,7 @@ class _LearnState extends State<Learn> {
     return Container(
       child: RaisedButton(
         onPressed: () {
+          speak(btntxt);
           calculation(btntxt);
         },
         child: Text(

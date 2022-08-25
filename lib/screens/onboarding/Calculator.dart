@@ -76,7 +76,7 @@ class _CalculatorState extends State<Calculator> {
 
               setState(
                 () {
-                  num length = finalResult.length - 11;
+                  num length = finalResult.length - 10;
 
                   if (length == 0) {
                     text = finalResult.substring(
@@ -96,7 +96,7 @@ class _CalculatorState extends State<Calculator> {
 
           onVerticalDragEnd: (DragEndDetails details) {
             print('vertical');
-            if (finalResult != null && finalResult.length > 0) {
+            if (finalResult != null && finalResult.length > 6) {
               text = text + ' ';
               finalResult = finalResult + ' ';
 

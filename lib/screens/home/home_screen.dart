@@ -29,25 +29,25 @@ class HomeScreen extends GetView<MyDrawerController> {
     Future _speak() async {
       await flutterTts.setLanguage("hi-IN");
       await flutterTts.setPitch(1);
-      await flutterTts.speak("Double Tap kare aur Braille Seekhe ");
+      await flutterTts.speak("Double Tap to learn");
     }
 
     Future _speak1() async {
       await flutterTts.setLanguage("hi-IN");
       await flutterTts.setPitch(1);
-      await flutterTts.speak("Kuch मजेदार Sawal");
+      await flutterTts.speak("Double Tap to go give test");
     }
 
     Future _speak2() async {
       await flutterTts.setLanguage("hi-IN");
       await flutterTts.setPitch(1);
-      await flutterTts.speak("नया Gyaan ka sagar");
+      await flutterTts.speak("Double Tap to Practice");
     }
 
     Future _speak3() async {
       await flutterTts.setLanguage("hi-IN");
       await flutterTts.setPitch(1);
-      await flutterTts.speak("Goga Humara Masiha , Goga Sabse Mahan");
+      await flutterTts.speak("Double Tap to Read notes ");
     }
 
     QuizPaperController _quizePprContoller = Get.find();
@@ -128,12 +128,13 @@ class HomeScreen extends GetView<MyDrawerController> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
-                             Container(
-                                  child: const Image(
-                                  image: AssetImage('assets/images/braille_learn.jpeg'),
+                              Container(
+                                child: const Image(
+                                  image: AssetImage(
+                                      'assets/images/braille_learn.jpeg'),
                                   height: 120,
-            ),
-          ),
+                                ),
+                              ),
                               Text('Braille Learn'),
                             ],
                           ),
@@ -152,12 +153,13 @@ class HomeScreen extends GetView<MyDrawerController> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
-                             Container(
-                                  child: const Image(
-                                  image: AssetImage('assets/images/challenges.jpg'),
+                              Container(
+                                child: const Image(
+                                  image: AssetImage(
+                                      'assets/images/challenges.jpg'),
                                   height: 120,
-            ),
-          ),
+                                ),
+                              ),
                               Text('Challenges'),
                             ],
                           ),
@@ -177,12 +179,13 @@ class HomeScreen extends GetView<MyDrawerController> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               Container(
-                                  child: const Image(
-                                  image: AssetImage('assets/images/vocabulary.jpg'),
+                                child: const Image(
+                                  image: AssetImage(
+                                      'assets/images/challenges.jpg'),
                                   height: 120,
-            ),
-          ),
-                              Text('Vocabulary'),
+                                ),
+                              ),
+                              Text('Practice'),
                             ],
                           ),
                         ),
@@ -193,18 +196,20 @@ class HomeScreen extends GetView<MyDrawerController> {
                           onDoubleTap: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => PdfRead()),
+                              MaterialPageRoute(
+                                  builder: (context) => PdfRead()),
                             );
                           },
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
-                             Container(
-                                  child: const Image(
-                                  image: AssetImage('assets/images/progress.jpg'),
+                              Container(
+                                child: const Image(
+                                  image:
+                                      AssetImage('assets/images/progress.jpg'),
                                   height: 120,
-            ),
-          ),
+                                ),
+                              ),
                               Text('Progress'),
                             ],
                           ),

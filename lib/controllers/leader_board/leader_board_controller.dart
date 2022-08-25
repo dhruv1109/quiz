@@ -12,7 +12,7 @@ class LeaderBoardController extends GetxController {
   final loadingStatus = LoadingStatus.completed.obs;
 
   void getAll(String paperId) async {
-   loadingStatus.value = LoadingStatus.loading;
+    loadingStatus.value = LoadingStatus.loading;
     try {
       final QuerySnapshot<Map<String, dynamic>> _leaderBoardSnapShot =
           await getleaderBoard(paperId: paperId)
@@ -36,19 +36,17 @@ class LeaderBoardController extends GetxController {
     }
   }
 
-  void getMyScores(String paperId) async{
+  void getMyScores(String paperId) async {
     final user = Get.find<AuthController>().getUser();
-    
-    if(user == null){
+
+    if (user == null) {
       return;
     }
     try {
-      final DocumentSnapshot<Map<String, dynamic>> _leaderBoardSnapShot = await getleaderBoard(paperId: paperId).doc(user.email).get();
-      final _myScores =  LeaderBoardData.fromSnapShot(_leaderBoardSnapShot);
-      _myScores.user = UserData(
-        name: user.displayName!,
-        image: user.photoURL
-      );
+      final DocumentSnapshot<Map<String, dynamic>> _leaderBoardSnapShot =
+          await getleaderBoard(paperId: paperId).doc(user.email).get();
+      final _myScores = LeaderBoardData.fromSnapShot(_leaderBoardSnapShot);
+      _myScores.user = UserData(name: user.displayName!, image: user.photoURL);
       myScores.value = _myScores;
     } catch (e) {
       AppLogger.e(e);

@@ -29,14 +29,17 @@ class SpeechTextState extends State<SpeechText> {
     super.initState();
     _initSpeech();
   }
+
   void _initSpeech() async {
     _speechEnabled = await _speechToText.initialize();
     setState(() {});
   }
+
   void _startListening() async {
     await _speechToText.listen(onResult: _onSpeechResult);
     setState(() {});
   }
+
   void _stopListening() async {
     await _speechToText.stop();
     setState(() {});
