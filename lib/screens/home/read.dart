@@ -4,10 +4,15 @@ import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:get/get.dart';
 import 'package:quizzle/configs/configs.dart';
 import 'package:quizzle/controllers/controllers.dart';
+import 'package:quizzle/screens/home/StoryEnglish/english.dart';
+import 'package:quizzle/screens/home/StoryHindi/hindi.dart';
 import 'package:quizzle/widgets/widgets.dart';
 import '../onboarding/custom_drawer.dart';
 import 'readeng.dart';
 import 'readhin.dart';
+
+import 'package:speech_to_text/speech_recognition_result.dart';
+import 'package:speech_to_text/speech_to_text.dart';
 
 class PdfRead extends GetView<MyDrawerController> {
   PdfRead({Key? key}) : super(key: key);
@@ -147,6 +152,7 @@ class PdfRead extends GetView<MyDrawerController> {
                           ),
                         ),
                       ),
+                      vnav3(),
                     ],
                   ),
                 )
@@ -156,5 +162,92 @@ class PdfRead extends GetView<MyDrawerController> {
         ),
       ),
     ));
+  }
+}
+
+class vnav3 extends StatefulWidget {
+  vnav3({Key? key}) : super(key: key);
+
+  @override
+  vnavState createState() => vnavState();
+}
+
+class vnavState extends State<vnav3> {
+  
+  SpeechToText _speechToText = SpeechToText();
+  bool _speechEnabled = false;
+  String _lastWords = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _initSpeech();
+    _startListening();
+  }
+
+  void _initSpeech() async {
+    _speechEnabled = await _speechToText.initialize();
+    setState(() {});
+  }
+
+  void _startListening() async {
+    await _speechToText.listen(onResult: _onSpeechResult);
+    setState(() {});
+  }
+
+  void _stopListening() async {
+    await _speechToText.stop();
+    setState(() {});
+  }
+
+  void _onSpeechResult(SpeechRecognitionResult result) {
+    setState(() {
+      _lastWords = result.recognizedWords;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+
+    if(_lastWords == "back")
+    {
+      _lastWords="";
+      Navigator.of(context).pop();
+    }
+    else if(_lastWords == "English")
+    {
+      _lastWords="";
+      Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => English()),
+                            );
+    }
+      else if(_lastWords == "Hindi")
+    {
+      _lastWords="";
+      Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Hindi()),
+                            );
+    }
+   /* else if(_lastWords!="")
+    {
+      _lastWords == "";
+      Navigator.pop(context);
+    }*/
+    
+
+    return Scaffold(
+      
+      floatingActionButton: FloatingActionButton(
+        onPressed:
+            // If not yet listening for speech start, otherwise stop
+            _speechToText.isNotListening ? _startListening : _stopListening,
+        tooltip: 'Listen',
+        child: Icon(_speechToText.isNotListening ? Icons.mic_off : Icons.mic),
+      ),
+    );
   }
 }

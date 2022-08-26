@@ -10,6 +10,8 @@ import '../../onboarding/custom_drawer.dart';
 import '../practicetopic/science/biology.dart';
 import '../practicetopic/science/physics.dart';
 import '../practicetopic/science/chemistry.dart';
+import 'package:speech_to_text/speech_recognition_result.dart';
+import 'package:speech_to_text/speech_to_text.dart';
 
 class science extends GetView<MyDrawerController> {
   science({Key? key}) : super(key: key);
@@ -202,6 +204,7 @@ class science extends GetView<MyDrawerController> {
                               ),
                             ),
                           ),*/
+                          vnav4(),
                         ],
                       ),
                     ),
@@ -213,5 +216,92 @@ class science extends GetView<MyDrawerController> {
         ),
       ),
     ));
+  }
+}
+
+class vnav4 extends StatefulWidget {
+  vnav4({Key? key}) : super(key: key);
+
+  @override
+  vnavState createState() => vnavState();
+}
+
+class vnavState extends State<vnav4> {
+  
+  SpeechToText _speechToText = SpeechToText();
+  bool _speechEnabled = false;
+  String _lastWords = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _initSpeech();
+  }
+
+  void _initSpeech() async {
+    _speechEnabled = await _speechToText.initialize();
+    setState(() {});
+  }
+
+  void _startListening() async {
+    await _speechToText.listen(onResult: _onSpeechResult);
+    setState(() {});
+  }
+
+  void _stopListening() async {
+    await _speechToText.stop();
+    setState(() {});
+  }
+
+  void _onSpeechResult(SpeechRecognitionResult result) {
+    setState(() {
+      _lastWords = result.recognizedWords;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+
+   /* if(_lastWords == "back")
+    {
+      _lastWords="";
+      Navigator.pop(context);
+    }
+*/
+    if(_lastWords == "Biology")
+    {
+      _lastWords="";
+      Navigator.of(context).push(MaterialPageRoute(builder: (context) =>
+    biology()));
+     
+    }
+    else if(_lastWords == "Physics")
+    {
+      _lastWords="";
+      Navigator.of(context).push(MaterialPageRoute(builder: (context) =>
+    physics()));
+    }
+      else if(_lastWords == "Chemistry")
+    {
+      _lastWords="";
+      Navigator.of(context).push(MaterialPageRoute(builder: (context) =>
+    chemistry()));
+    }
+
+    
+    
+    
+
+    return Scaffold(
+      
+      floatingActionButton: FloatingActionButton(
+        
+        onPressed:
+            // If not yet listening for speech start, otherwise stop
+            _speechToText.isNotListening ? _startListening : _stopListening,
+        tooltip: 'Listen',
+        child: Icon(_speechToText.isNotListening ? Icons.mic_off : Icons.mic),
+      ),
+    );
   }
 }

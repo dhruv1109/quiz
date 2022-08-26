@@ -11,6 +11,8 @@ import 'practice_subject/practicemaths.dart';
 import 'practice_subject/practicescience.dart';
 import 'practice_subject/practicesst.dart';
 import 'practice_subject/practiceenglish.dart';
+import 'package:speech_to_text/speech_recognition_result.dart';
+import 'package:speech_to_text/speech_to_text.dart';
 
 class PracticeTest extends GetView<MyDrawerController> {
   PracticeTest({Key? key}) : super(key: key);
@@ -210,7 +212,8 @@ class PracticeTest extends GetView<MyDrawerController> {
                                 ],
                               ),
                             ),
-                          ),
+                           
+                          ), vnav1(),
                         ],
                       ),
                     ),
@@ -222,5 +225,100 @@ class PracticeTest extends GetView<MyDrawerController> {
         ),
       ),
     ));
+  }
+}
+
+
+
+class vnav1 extends StatefulWidget {
+  vnav1({Key? key}) : super(key: key);
+
+  @override
+  vnavState createState() => vnavState();
+}
+
+class vnavState extends State<vnav1> {
+  
+  SpeechToText _speechToText = SpeechToText();
+  bool _speechEnabled = false;
+  String _lastWords = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _initSpeech();
+  }
+
+  void _initSpeech() async {
+    _speechEnabled = await _speechToText.initialize();
+    setState(() {});
+  }
+
+  void _startListening() async {
+    await _speechToText.listen(onResult: _onSpeechResult);
+    setState(() {});
+  }
+
+  void _stopListening() async {
+    await _speechToText.stop();
+    setState(() {});
+  }
+
+  void _onSpeechResult(SpeechRecognitionResult result) {
+    setState(() {
+      _lastWords = result.recognizedWords;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+
+    if(_lastWords == "back")
+    {
+      _lastWords="";
+      Navigator.pop(context);
+    }
+
+    else if(_lastWords == "english")
+    {
+      _lastWords="";
+      Navigator.of(context).push(MaterialPageRoute(builder: (context) =>
+    english()));
+     
+    }
+    else if(_lastWords == "maths")
+    {
+      _lastWords="";
+      Navigator.of(context).push(MaterialPageRoute(builder: (context) =>
+    maths()));
+    }
+      else if(_lastWords == "science")
+    {
+      _lastWords="";
+      Navigator.of(context).push(MaterialPageRoute(builder: (context) =>
+    science()));
+    }
+    else if(_lastWords == "SST")
+    {
+      _lastWords="";
+      Navigator.of(context).push(MaterialPageRoute(builder: (context) =>
+    sst()));
+    }
+
+    
+    
+    
+
+    return Scaffold(
+      
+      floatingActionButton: FloatingActionButton(
+        
+        onPressed:
+            // If not yet listening for speech start, otherwise stop
+            _speechToText.isNotListening ? _startListening : _stopListening,
+        tooltip: 'Listen',
+        child: Icon(_speechToText.isNotListening ? Icons.mic_off : Icons.mic),
+      ),
+    );
   }
 }

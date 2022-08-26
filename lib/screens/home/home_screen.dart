@@ -10,6 +10,8 @@ import 'learn.dart';
 import 'challenge.dart';
 import 'PracticeTest.dart';
 import 'read.dart';
+import 'package:speech_to_text/speech_recognition_result.dart';
+import 'package:speech_to_text/speech_to_text.dart';
 
 class HomeScreen extends GetView<MyDrawerController> {
   HomeScreen({Key? key}) : super(key: key);
@@ -215,14 +217,99 @@ class HomeScreen extends GetView<MyDrawerController> {
                           ),
                         ),
                       ),
+                      vnav(),
                     ],
                   ),
                 )
+                
               ],
             ),
+            
           ),
         ),
       ),
     ));
+  }
+}
+
+class vnav extends StatefulWidget {
+  vnav({Key? key}) : super(key: key);
+
+  @override
+  vnavState createState() => vnavState();
+}
+
+class vnavState extends State<vnav> {
+  
+  SpeechToText _speechToText = SpeechToText();
+  bool _speechEnabled = false;
+  String _lastWords = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _initSpeech();
+  }
+
+  void _initSpeech() async {
+    _speechEnabled = await _speechToText.initialize();
+    setState(() {});
+  }
+
+  void _startListening() async {
+    await _speechToText.listen(onResult: _onSpeechResult);
+    setState(() {});
+  }
+
+  void _stopListening() async {
+    await _speechToText.stop();
+    setState(() {});
+  }
+
+  void _onSpeechResult(SpeechRecognitionResult result) {
+    setState(() {
+      _lastWords = result.recognizedWords;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+
+    if(_lastWords == "learn")
+    {
+      _lastWords="";
+      Navigator.of(context).push(MaterialPageRoute(builder: (context) =>
+    Learn()));
+           
+    }
+    else if(_lastWords == "Challenge")
+    {
+      _lastWords="";
+      Navigator.of(context).push(MaterialPageRoute(builder: (context) =>
+    Challenge()));
+    }
+      else if(_lastWords == "practice")
+    {
+      _lastWords="";
+      Navigator.of(context).push(MaterialPageRoute(builder: (context) =>
+    PracticeTest()));
+     
+    }
+    else if(_lastWords == "read")
+    {
+      _lastWords="";
+      Navigator.of(context).push(MaterialPageRoute(builder: (context) =>
+    PdfRead()));
+    }
+    return Scaffold(
+      
+      floatingActionButton: FloatingActionButton(
+        onPressed:
+            // If not yet listening for speech start, otherwise stop
+            _speechToText.isNotListening ? _startListening : _stopListening,
+        tooltip: 'Listen',
+        child: Icon(_speechToText.isNotListening ? Icons.mic_off : Icons.mic),
+      ),
+    );
   }
 }

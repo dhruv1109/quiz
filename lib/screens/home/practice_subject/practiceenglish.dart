@@ -3,12 +3,15 @@ import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:get/get.dart';
 import 'package:quizzle/configs/configs.dart';
 import 'package:quizzle/controllers/controllers.dart';
+import 'package:quizzle/screens/home/PracticeTest.dart';
 import 'package:quizzle/widgets/widgets.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import '../../onboarding/custom_drawer.dart';
 import '../practicetopic/english/grammar.dart';
 import '../practicetopic/english/letter.dart';
 import '../practicetopic/english/word.dart';
+import 'package:speech_to_text/speech_recognition_result.dart';
+import 'package:speech_to_text/speech_to_text.dart';
 
 class english extends GetView<MyDrawerController> {
   english({Key? key}) : super(key: key);
@@ -201,10 +204,12 @@ class english extends GetView<MyDrawerController> {
                               ),
                             ),
                           ),*/
+                          vnav2(),
                         ],
                       ),
                     ),
                   ),
+                 
                 )
               ],
             ),
@@ -212,5 +217,89 @@ class english extends GetView<MyDrawerController> {
         ),
       ),
     ));
+  }
+}
+
+
+class vnav2 extends StatefulWidget {
+  vnav2({Key? key}) : super(key: key);
+
+  @override
+  vnavState createState() => vnavState();
+}
+
+class vnavState extends State<vnav2> {
+  
+  SpeechToText _speechToText = SpeechToText();
+  bool _speechEnabled = false;
+  String _lastWords = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _initSpeech();
+  }
+
+  void _initSpeech() async {
+    _speechEnabled = await _speechToText.initialize();
+    setState(() {});
+  }
+
+  void _startListening() async {
+    await _speechToText.listen(onResult: _onSpeechResult);
+    setState(() {});
+  }
+
+  void _stopListening() async {
+    await _speechToText.stop();
+    setState(() {});
+  }
+
+  void _onSpeechResult(SpeechRecognitionResult result) {
+    setState(() {
+      _lastWords = result.recognizedWords;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+
+   /* if(_lastWords == "back")
+    {
+      _lastWords="";
+      Navigator.of(context).push(MaterialPageRoute(builder: (context) =>
+    PracticeTest()));
+    }*/
+
+    if(_lastWords == "grammar")
+    {
+      _lastWords="";
+      Navigator.of(context).push(MaterialPageRoute(builder: (context) =>
+    grammar()));
+     
+    }
+    else if(_lastWords == "words")
+    {
+      _lastWords="";
+     Navigator.of(context).push(MaterialPageRoute(builder: (context) =>
+    word()));
+    }
+      else if(_lastWords == "letters")
+    {
+      _lastWords="";
+      Navigator.of(context).push(MaterialPageRoute(builder: (context) =>
+    letter()));
+    }
+   
+    return Scaffold(
+      
+      floatingActionButton: FloatingActionButton(
+        onPressed:
+            // If not yet listening for speech start, otherwise stop
+            _speechToText.isNotListening ? _startListening : _stopListening,
+        tooltip: 'Listen',
+        child: Icon(_speechToText.isNotListening ? Icons.mic_off : Icons.mic),
+      ),
+    );
   }
 }

@@ -3,6 +3,9 @@ import 'package:get/get.dart';
 import 'package:quizzle/controllers/auth_controller.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:quizzle/widgets/widgets.dart';
+import 'package:speech_to_text/speech_to_text.dart';
+import 'package:speech_to_text/speech_recognition_result.dart';
+import '../home/home_screen.dart';
 
 class AppIntroductionScreen extends GetView<AuthController> {
   const AppIntroductionScreen({Key? key}) : super(key: key);
@@ -46,8 +49,11 @@ class AppIntroductionScreen extends GetView<AuthController> {
                             fontWeight: FontWeight.bold),
                       ),
                     ),
+                     vna(),
                   ],
+                  
                 ),
+               
               )
             ],
           )),
@@ -60,3 +66,69 @@ class AppIntroductionScreen extends GetView<AuthController> {
 //                     Icons.arrow_forward,
 //                     size: 35,
 //                   ))
+
+class vna extends StatefulWidget {
+  vna({Key? key}) : super(key: key);
+
+  @override
+  vnaState createState() => vnaState();
+}
+
+class vnaState extends State<vna> {
+  
+  SpeechToText _speechToText = SpeechToText();
+  bool _speechEnabled = false;
+  String _lastWords = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _initSpeech();
+  }
+
+  void _initSpeech() async {
+    _speechEnabled = await _speechToText.initialize();
+    setState(() {});
+  }
+
+  void _startListening() async {
+    await _speechToText.listen(onResult: _onSpeechResult);
+    setState(() {});
+  }
+
+  void _stopListening() async {
+    await _speechToText.stop();
+    setState(() {});
+  }
+
+  void _onSpeechResult(SpeechRecognitionResult result) {
+    setState(() {
+      _lastWords = result.recognizedWords;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+
+    if(_lastWords == "home")
+    {
+      _lastWords="";
+      Navigator.of(context).pushNamedAndRemoveUntil(
+   "/home",
+   (route) => route.isCurrent && route.settings.name == "/home"
+  ? false
+  : true);
+    }
+    
+    return Scaffold(
+      
+      floatingActionButton: FloatingActionButton(
+        onPressed:
+            // If not yet listening for speech start, otherwise stop
+            _speechToText.isNotListening ? _startListening : _stopListening,
+        tooltip: 'Listen',
+        child: Icon(_speechToText.isNotListening ? Icons.mic_off : Icons.mic),
+      ),
+    );
+  }
+}
