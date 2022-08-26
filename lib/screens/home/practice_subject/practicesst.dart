@@ -19,7 +19,8 @@ class sst extends GetView<MyDrawerController> {
     Future _speakk() async {
       await flutterTts.setLanguage("hi-IN");
       await flutterTts.setPitch(1);
-      await flutterTts.speak("select the chapter db");
+      await flutterTts
+          .speak("select the social studies topic you wish to practice");
     }
 
     Future _speak() async {
@@ -93,7 +94,7 @@ class sst extends GetView<MyDrawerController> {
                           ],
                         ),
                       ),
-                      const Text('What Do You Want To Improve Today ?',
+                      const Text('select the topic of Social Studies',
                           style: kHeaderTS),
                       const SizedBox(height: 15),
                     ],
@@ -121,11 +122,12 @@ class sst extends GetView<MyDrawerController> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
                                   Container(
-                                  child: const Image(
-                                  image: AssetImage('assets/images/civics.png'),
-                                  height: 120,
-            ),
-          ),
+                                    child: const Image(
+                                      image: AssetImage(
+                                          'assets/images/civics.png'),
+                                      height: 120,
+                                    ),
+                                  ),
                                   Text('Civics'),
                                 ],
                               ),
@@ -144,12 +146,13 @@ class sst extends GetView<MyDrawerController> {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
-                                   Container(
-                                  child: const Image(
-                                  image: AssetImage('assets/images/geo.jpg'),
-                                  height: 120,
-            ),
-          ),
+                                  Container(
+                                    child: const Image(
+                                      image:
+                                          AssetImage('assets/images/geo.jpg'),
+                                      height: 120,
+                                    ),
+                                  ),
                                   Text('Geography'),
                                 ],
                               ),
@@ -168,12 +171,13 @@ class sst extends GetView<MyDrawerController> {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
-                               Container(
-                                  child: const Image(
-                                  image: AssetImage('assets/images/his.jpg'),
-                                  height: 120,
-            ),
-          ),
+                                  Container(
+                                    child: const Image(
+                                      image:
+                                          AssetImage('assets/images/his.jpg'),
+                                      height: 120,
+                                    ),
+                                  ),
                                   Text('History'),
                                 ],
                               ),

@@ -22,7 +22,7 @@ class english extends GetView<MyDrawerController> {
     Future _speakk() async {
       await flutterTts.setLanguage("hi-IN");
       await flutterTts.setPitch(1);
-      await flutterTts.speak("select the chapter db");
+      await flutterTts.speak("select the english topic you wish to practice");
     }
 
     Future _speak() async {
@@ -53,7 +53,7 @@ class english extends GetView<MyDrawerController> {
         angle: 0.0,
         style: DrawerStyle.DefaultStyle,
         menuScreen: const CustomDrawer(),
-        backgroundColor: Colors.white.withOpacity(0.5),
+        backgroundColor: Color.fromARGB(255, 53, 44, 112).withOpacity(0.5),
         slideWidth: MediaQuery.of(context).size.width * 0.6,
         mainScreen: Container(
           decoration: BoxDecoration(gradient: mainGradient(context)),
@@ -96,7 +96,7 @@ class english extends GetView<MyDrawerController> {
                           ],
                         ),
                       ),
-                      const Text('What Do You Want To Improve Today ?',
+                      const Text('Select the topic of English',
                           style: kHeaderTS),
                       const SizedBox(height: 15),
                     ],
@@ -123,12 +123,13 @@ class english extends GetView<MyDrawerController> {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
-                                   Container(
-                                  child: const Image(
-                                  image: AssetImage('assets/images/grammar.jpg'),
-                                  height: 120,
-            ),
-          ),
+                                  Container(
+                                    child: const Image(
+                                      image: AssetImage(
+                                          'assets/images/grammar.jpg'),
+                                      height: 120,
+                                    ),
+                                  ),
                                   const Text('Grammar'),
                                 ],
                               ),
@@ -148,11 +149,12 @@ class english extends GetView<MyDrawerController> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
                                   Container(
-                                  child: const Image(
-                                  image: AssetImage('assets/images/letter.png'),
-                                  height: 120,
-            ),
-          ),
+                                    child: const Image(
+                                      image: AssetImage(
+                                          'assets/images/letter.png'),
+                                      height: 120,
+                                    ),
+                                  ),
                                   const Text('Letter'),
                                 ],
                               ),
@@ -171,12 +173,13 @@ class english extends GetView<MyDrawerController> {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
-                                   Container(
-                                  child: const Image(
-                                  image: AssetImage('assets/images/word.png'),
-                                  height: 120,
-            ),
-          ),
+                                  Container(
+                                    child: const Image(
+                                      image:
+                                          AssetImage('assets/images/word.png'),
+                                      height: 120,
+                                    ),
+                                  ),
                                   const Text('Word'),
                                 ],
                               ),
@@ -209,7 +212,6 @@ class english extends GetView<MyDrawerController> {
                       ),
                     ),
                   ),
-                 
                 )
               ],
             ),
@@ -220,7 +222,6 @@ class english extends GetView<MyDrawerController> {
   }
 }
 
-
 class vnav2 extends StatefulWidget {
   vnav2({Key? key}) : super(key: key);
 
@@ -229,7 +230,6 @@ class vnav2 extends StatefulWidget {
 }
 
 class vnavState extends State<vnav2> {
-  
   SpeechToText _speechToText = SpeechToText();
   bool _speechEnabled = false;
   String _lastWords = '';
@@ -263,36 +263,28 @@ class vnavState extends State<vnav2> {
 
   @override
   Widget build(BuildContext context) {
-
-   /* if(_lastWords == "back")
+    /* if(_lastWords == "back")
     {
       _lastWords="";
       Navigator.of(context).push(MaterialPageRoute(builder: (context) =>
     PracticeTest()));
     }*/
 
-    if(_lastWords == "grammar")
-    {
-      _lastWords="";
-      Navigator.of(context).push(MaterialPageRoute(builder: (context) =>
-    grammar()));
-     
+    if (_lastWords == "grammar") {
+      _lastWords = "";
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (context) => grammar()));
+    } else if (_lastWords == "words") {
+      _lastWords = "";
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (context) => word()));
+    } else if (_lastWords == "letters") {
+      _lastWords = "";
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (context) => letter()));
     }
-    else if(_lastWords == "words")
-    {
-      _lastWords="";
-     Navigator.of(context).push(MaterialPageRoute(builder: (context) =>
-    word()));
-    }
-      else if(_lastWords == "letters")
-    {
-      _lastWords="";
-      Navigator.of(context).push(MaterialPageRoute(builder: (context) =>
-    letter()));
-    }
-   
+
     return Scaffold(
-      
       floatingActionButton: FloatingActionButton(
         onPressed:
             // If not yet listening for speech start, otherwise stop

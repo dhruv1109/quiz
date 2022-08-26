@@ -9,7 +9,7 @@ const Color appBarIconColorDT = Colors.white;
 const Color mainTextColorDT = Color.fromARGB(255, 40, 40, 40);
 const Color iconColorDT = Colors.white;
 const Color shadowColorDT = Color.fromARGB(90, 30, 172, 172);
-const Color cardColorDT = Color.fromARGB(255, 254, 254, 255);
+const Color cardColorDT = Colors.white; //Color.fromARGB(255, 254, 254, 255);
 const Color scaffoldBackgroundColor = Color.fromARGB(255, 20, 20, 40);
 
 class DarkTheme with SubThemeData {

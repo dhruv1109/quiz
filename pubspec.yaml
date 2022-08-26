@@ -43,6 +43,7 @@ dependencies:
   http: ^0.13.4
   url_launcher: ^6.0.18
   file_picker: ^4.6.1
+  vibration: ^1.7.5
   
   
 

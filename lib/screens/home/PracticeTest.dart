@@ -131,11 +131,12 @@ class PracticeTest extends GetView<MyDrawerController> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
                                   Container(
-                                  child: const Image(
-                                  image: AssetImage('assets/images/english.png'),
-                                  height: 120,
-            ),
-          ),
+                                    child: const Image(
+                                      image: AssetImage(
+                                          'assets/images/english.png'),
+                                      height: 120,
+                                    ),
+                                  ),
                                   Text('English'),
                                 ],
                               ),
@@ -155,11 +156,12 @@ class PracticeTest extends GetView<MyDrawerController> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
                                   Container(
-                                  child: const Image(
-                                  image: AssetImage('assets/images/maths.png'),
-                                  height: 120,
-            ),
-          ),
+                                    child: const Image(
+                                      image:
+                                          AssetImage('assets/images/maths.png'),
+                                      height: 120,
+                                    ),
+                                  ),
                                   Text('Maths'),
                                 ],
                               ),
@@ -179,11 +181,12 @@ class PracticeTest extends GetView<MyDrawerController> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
                                   Container(
-                                  child: const Image(
-                                  image: AssetImage('assets/images/science.jpg'),
-                                  height: 120,
-            ),
-          ),
+                                    child: const Image(
+                                      image: AssetImage(
+                                          'assets/images/science.jpg'),
+                                      height: 120,
+                                    ),
+                                  ),
                                   Text('Science'),
                                 ],
                               ),
@@ -202,18 +205,19 @@ class PracticeTest extends GetView<MyDrawerController> {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
-                                   Container(
-                                  child: const Image(
-                                  image: AssetImage('assets/images/sst.jpg'),
-                                  height: 120,
-            ),
-          ),
+                                  Container(
+                                    child: const Image(
+                                      image:
+                                          AssetImage('assets/images/sst.jpg'),
+                                      height: 120,
+                                    ),
+                                  ),
                                   Text('SST'),
                                 ],
                               ),
                             ),
-                           
-                          ), vnav1(),
+                          ),
+                          vnav1(),
                         ],
                       ),
                     ),
@@ -228,8 +232,6 @@ class PracticeTest extends GetView<MyDrawerController> {
   }
 }
 
-
-
 class vnav1 extends StatefulWidget {
   vnav1({Key? key}) : super(key: key);
 
@@ -238,7 +240,6 @@ class vnav1 extends StatefulWidget {
 }
 
 class vnavState extends State<vnav1> {
-  
   SpeechToText _speechToText = SpeechToText();
   bool _speechEnabled = false;
   String _lastWords = '';
@@ -272,52 +273,39 @@ class vnavState extends State<vnav1> {
 
   @override
   Widget build(BuildContext context) {
-
-    if(_lastWords == "back")
-    {
-      _lastWords="";
+    if (_lastWords == "back") {
+      _lastWords = "";
       Navigator.pop(context);
+    } else if (_lastWords == "english") {
+      _lastWords = "";
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (context) => english()));
+    } else if (_lastWords == "maths") {
+      _lastWords = "";
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (context) => maths()));
+    } else if (_lastWords == "science") {
+      _lastWords = "";
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (context) => science()));
+    } else if (_lastWords == "SST") {
+      _lastWords = "";
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (context) => sst()));
     }
-
-    else if(_lastWords == "english")
-    {
-      _lastWords="";
-      Navigator.of(context).push(MaterialPageRoute(builder: (context) =>
-    english()));
-     
-    }
-    else if(_lastWords == "maths")
-    {
-      _lastWords="";
-      Navigator.of(context).push(MaterialPageRoute(builder: (context) =>
-    maths()));
-    }
-      else if(_lastWords == "science")
-    {
-      _lastWords="";
-      Navigator.of(context).push(MaterialPageRoute(builder: (context) =>
-    science()));
-    }
-    else if(_lastWords == "SST")
-    {
-      _lastWords="";
-      Navigator.of(context).push(MaterialPageRoute(builder: (context) =>
-    sst()));
-    }
-
-    
-    
-    
 
     return Scaffold(
-      
       floatingActionButton: FloatingActionButton(
-        
+        backgroundColor: Colors.white.withOpacity(0.5),
         onPressed:
             // If not yet listening for speech start, otherwise stop
             _speechToText.isNotListening ? _startListening : _stopListening,
         tooltip: 'Listen',
-        child: Icon(_speechToText.isNotListening ? Icons.mic_off : Icons.mic),
+        child: Icon(
+          (_speechToText.isNotListening ? Icons.mic_off : Icons.mic),
+          color: Colors.white.withOpacity(0.5),
+          size: 900,
+        ),
       ),
     );
   }

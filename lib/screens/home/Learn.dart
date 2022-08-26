@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:alan_voice/alan_voice.dart';
 import 'package:flutter_tts/flutter_tts.dart';
+import 'package:vibration/vibration.dart';
 
 dynamic finalResult = '           ';
 dynamic text = '           ';
@@ -43,6 +44,19 @@ class _LearnState extends State<Learn> {
       child: RaisedButton(
         onPressed: () {
           speak(btntxt);
+          if (btntxt == "1") {
+            Vibration.vibrate(duration: 100);
+          } else if (btntxt == "2") {
+            Vibration.vibrate(duration: 200);
+          } else if (btntxt == "3") {
+            Vibration.vibrate(duration: 300);
+          } else if (btntxt == "4") {
+            Vibration.vibrate(duration: 400);
+          } else if (btntxt == "5") {
+            Vibration.vibrate(duration: 500);
+          } else if (btntxt == "6") {
+            Vibration.vibrate(duration: 600);
+          }
           calculation(btntxt);
         },
         child: Text(
@@ -82,7 +96,7 @@ class _LearnState extends State<Learn> {
               setState(
                 () {
                   num length = finalResult.length - 11;
-
+                  speak('braille');
                   if (length == 0) {
                     text = finalResult.substring(
                         finalResult.length - 11, finalResult.length);

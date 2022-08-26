@@ -19,7 +19,7 @@ class maths extends GetView<MyDrawerController> {
     Future _speakk() async {
       await flutterTts.setLanguage("hi-IN");
       await flutterTts.setPitch(1);
-      await flutterTts.speak("select the chapter db");
+      await flutterTts.speak("select the maths topic you wish to practice");
     }
 
     Future _speak() async {
@@ -87,8 +87,7 @@ class maths extends GetView<MyDrawerController> {
                           ],
                         ),
                       ),
-                      const Text('What Do You Want To Improve Today ?',
-                          style: kHeaderTS),
+                      const Text('Select the topic of Maths', style: kHeaderTS),
                       const SizedBox(height: 15),
                     ],
                   ),
@@ -114,12 +113,13 @@ class maths extends GetView<MyDrawerController> {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
-                                   Container(
-                                  child: const Image(
-                                  image: AssetImage('assets/images/arithmetic.jpeg'),
-                                  height: 120,
-            ),
-          ),
+                                  Container(
+                                    child: const Image(
+                                      image: AssetImage(
+                                          'assets/images/arithmetic.jpeg'),
+                                      height: 120,
+                                    ),
+                                  ),
                                   Text('Arithmetic'),
                                 ],
                               ),
@@ -139,11 +139,12 @@ class maths extends GetView<MyDrawerController> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
                                   Container(
-                                  child: const Image(
-                                  image: AssetImage('assets/images/table.jpg'),
-                                  height: 120,
-            ),
-          ),
+                                    child: const Image(
+                                      image:
+                                          AssetImage('assets/images/table.jpg'),
+                                      height: 120,
+                                    ),
+                                  ),
                                   const Text('Table'),
                                 ],
                               ),

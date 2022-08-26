@@ -6,9 +6,18 @@ import 'package:quizzle/configs/configs.dart';
 import 'package:quizzle/controllers/controllers.dart';
 import 'package:quizzle/widgets/widgets.dart';
 import '../../../onboarding/custom_drawer.dart';
+import 'package:flutter_tts/flutter_tts.dart';
+
+final FlutterTts flutterTts = FlutterTts();
+
+Future _speakk() async {
+  await flutterTts.setLanguage("hi-IN");
+  await flutterTts.setPitch(1);
+  await flutterTts.speak("select the chemistry chapter ");
+}
 
 class chemistry extends GetView<MyDrawerController> {
-  const chemistry({Key? key}) : super(key: key);
+  chemistry({Key? key}) : super(key: key);
 
   // static const String routeName = '/home';
 
@@ -58,6 +67,7 @@ class chemistry extends GetView<MyDrawerController> {
                                 if (user != null) {
                                   _label = '  Hello ${user.displayName}';
                                 }
+                                _speakk();
                                 return Text(_label,
                                     style: kDetailsTS.copyWith(
                                         color: kOnSurfaceTextColor));
@@ -66,7 +76,7 @@ class chemistry extends GetView<MyDrawerController> {
                           ],
                         ),
                       ),
-                      const Text('What Do You Want To Improve Today ?',
+                      const Text('Select the chapter of chemistry',
                           style: kHeaderTS),
                       const SizedBox(height: 15),
                     ],

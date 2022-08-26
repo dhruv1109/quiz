@@ -155,6 +155,7 @@ class _CalculatorState extends State<Calculator> {
     return Container(
       child: RaisedButton(
         onPressed: () {
+          speak(btntxt);
           calculation(btntxt);
         },
         child: Text(

@@ -22,7 +22,7 @@ class science extends GetView<MyDrawerController> {
     Future _speakk() async {
       await flutterTts.setLanguage("hi-IN");
       await flutterTts.setPitch(1);
-      await flutterTts.speak("select the chapter db");
+      await flutterTts.speak("select the science topic you wish to practice");
     }
 
     Future _speak() async {
@@ -96,7 +96,7 @@ class science extends GetView<MyDrawerController> {
                           ],
                         ),
                       ),
-                      const Text('What Do You Want To Improve Today ?',
+                      const Text('Select the Science topic for practice',
                           style: kHeaderTS),
                       const SizedBox(height: 15),
                     ],
@@ -124,11 +124,12 @@ class science extends GetView<MyDrawerController> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
                                   Container(
-                                  child: const Image(
-                                  image: AssetImage('assets/images/bio.jpg'),
-                                  height: 120,
-            ),
-          ),
+                                    child: const Image(
+                                      image:
+                                          AssetImage('assets/images/bio.jpg'),
+                                      height: 120,
+                                    ),
+                                  ),
                                   Text('Biology'),
                                 ],
                               ),
@@ -148,11 +149,12 @@ class science extends GetView<MyDrawerController> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
                                   Container(
-                                  child: const Image(
-                                  image: AssetImage('assets/images/physics.jpg'),
-                                  height: 120,
-            ),
-          ),
+                                    child: const Image(
+                                      image: AssetImage(
+                                          'assets/images/physics.jpg'),
+                                      height: 120,
+                                    ),
+                                  ),
                                   Text('Physics'),
                                 ],
                               ),
@@ -171,12 +173,13 @@ class science extends GetView<MyDrawerController> {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
-                                   Container(
-                                  child: const Image(
-                                  image: AssetImage('assets/images/chem.jpg'),
-                                  height: 120,
-            ),
-          ),
+                                  Container(
+                                    child: const Image(
+                                      image:
+                                          AssetImage('assets/images/chem.jpg'),
+                                      height: 120,
+                                    ),
+                                  ),
                                   Text('Chemistry'),
                                 ],
                               ),
@@ -227,7 +230,6 @@ class vnav4 extends StatefulWidget {
 }
 
 class vnavState extends State<vnav4> {
-  
   SpeechToText _speechToText = SpeechToText();
   bool _speechEnabled = false;
   String _lastWords = '';
@@ -261,46 +263,38 @@ class vnavState extends State<vnav4> {
 
   @override
   Widget build(BuildContext context) {
-
-   /* if(_lastWords == "back")
+    /* if(_lastWords == "back")
     {
       _lastWords="";
       Navigator.pop(context);
     }
 */
-    if(_lastWords == "Biology")
-    {
-      _lastWords="";
-      Navigator.of(context).push(MaterialPageRoute(builder: (context) =>
-    biology()));
-     
+    if (_lastWords == "Biology") {
+      _lastWords = "";
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (context) => biology()));
+    } else if (_lastWords == "Physics") {
+      _lastWords = "";
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (context) => physics()));
+    } else if (_lastWords == "Chemistry") {
+      _lastWords = "";
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (context) => chemistry()));
     }
-    else if(_lastWords == "Physics")
-    {
-      _lastWords="";
-      Navigator.of(context).push(MaterialPageRoute(builder: (context) =>
-    physics()));
-    }
-      else if(_lastWords == "Chemistry")
-    {
-      _lastWords="";
-      Navigator.of(context).push(MaterialPageRoute(builder: (context) =>
-    chemistry()));
-    }
-
-    
-    
-    
 
     return Scaffold(
-      
       floatingActionButton: FloatingActionButton(
-        
+        backgroundColor: Color.fromARGB(255, 240, 237, 255),
         onPressed:
             // If not yet listening for speech start, otherwise stop
             _speechToText.isNotListening ? _startListening : _stopListening,
         tooltip: 'Listen',
-        child: Icon(_speechToText.isNotListening ? Icons.mic_off : Icons.mic),
+        child: Icon(
+          (_speechToText.isNotListening ? Icons.mic_off : Icons.mic),
+          color: Color.fromARGB(255, 240, 237, 255),
+          size: 900,
+        ),
       ),
     );
   }

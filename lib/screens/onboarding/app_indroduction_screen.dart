@@ -49,11 +49,9 @@ class AppIntroductionScreen extends GetView<AuthController> {
                             fontWeight: FontWeight.bold),
                       ),
                     ),
-                     vna(),
+                    // vna(),
                   ],
-                  
                 ),
-               
               )
             ],
           )),
@@ -67,68 +65,68 @@ class AppIntroductionScreen extends GetView<AuthController> {
 //                     size: 35,
 //                   ))
 
-class vna extends StatefulWidget {
-  vna({Key? key}) : super(key: key);
+// class vna extends StatefulWidget {
+//   vna({Key? key}) : super(key: key);
 
-  @override
-  vnaState createState() => vnaState();
-}
+//   @override
+//   vnaState createState() => vnaState();
+// }
 
-class vnaState extends State<vna> {
+// class vnaState extends State<vna> {
   
-  SpeechToText _speechToText = SpeechToText();
-  bool _speechEnabled = false;
-  String _lastWords = '';
+//   SpeechToText _speechToText = SpeechToText();
+//   bool _speechEnabled = false;
+//   String _lastWords = '';
 
-  @override
-  void initState() {
-    super.initState();
-    _initSpeech();
-  }
+//   @override
+//   void initState() {
+//     super.initState();
+//     _initSpeech();
+//   }
 
-  void _initSpeech() async {
-    _speechEnabled = await _speechToText.initialize();
-    setState(() {});
-  }
+//   void _initSpeech() async {
+//     _speechEnabled = await _speechToText.initialize();
+//     setState(() {});
+//   }
 
-  void _startListening() async {
-    await _speechToText.listen(onResult: _onSpeechResult);
-    setState(() {});
-  }
+//   void _startListening() async {
+//     await _speechToText.listen(onResult: _onSpeechResult);
+//     setState(() {});
+//   }
 
-  void _stopListening() async {
-    await _speechToText.stop();
-    setState(() {});
-  }
+//   void _stopListening() async {
+//     await _speechToText.stop();
+//     setState(() {});
+//   }
 
-  void _onSpeechResult(SpeechRecognitionResult result) {
-    setState(() {
-      _lastWords = result.recognizedWords;
-    });
-  }
+//   void _onSpeechResult(SpeechRecognitionResult result) {
+//     setState(() {
+//       _lastWords = result.recognizedWords;
+//     });
+//   }
 
-  @override
-  Widget build(BuildContext context) {
+//   @override
+//   Widget build(BuildContext context) {
 
-    if(_lastWords == "home")
-    {
-      _lastWords="";
-      Navigator.of(context).pushNamedAndRemoveUntil(
-   "/home",
-   (route) => route.isCurrent && route.settings.name == "/home"
-  ? false
-  : true);
-    }
+//     if(_lastWords == "home")
+//     {
+//       _lastWords="";
+//       Navigator.of(context).pushNamedAndRemoveUntil(
+//    "/home",
+//    (route) => route.isCurrent && route.settings.name == "/home"
+//   ? false
+//   : true);
+//     }
     
-    return Scaffold(
+//     return Scaffold(
       
-      floatingActionButton: FloatingActionButton(
-        onPressed:
-            // If not yet listening for speech start, otherwise stop
-            _speechToText.isNotListening ? _startListening : _stopListening,
-        tooltip: 'Listen',
-        child: Icon(_speechToText.isNotListening ? Icons.mic_off : Icons.mic),
-      ),
-    );
-  }
-}
+//       floatingActionButton: FloatingActionButton(
+//         onPressed:
+//             // If not yet listening for speech start, otherwise stop
+//             _speechToText.isNotListening ? _startListening : _stopListening,
+//         tooltip: 'Listen',
+//         child: Icon(_speechToText.isNotListening ? Icons.mic_off : Icons.mic),
+//       ),
+//     );
+//   }
+// }

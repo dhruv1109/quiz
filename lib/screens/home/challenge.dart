@@ -102,7 +102,8 @@ class Challenge extends GetView<MyDrawerController> {
                           ],
                         ),
                       ),
-                      const Text('What Do You Want To Improve Today ?',
+                      const Text(
+                          'Which subject do you want to select for the test ?',
                           style: kHeaderTS),
                       const SizedBox(height: 15),
                     ],
@@ -129,13 +130,15 @@ class Challenge extends GetView<MyDrawerController> {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
-                                 Container(
-                                  child: const Image(
-                                  image: AssetImage('assets/images/english.png'),
-                                  height: 120,
-            ),
-          ),
-                                  Text('English'),  //english is to be there right  instead of physics
+                                  Container(
+                                    child: const Image(
+                                      image: AssetImage(
+                                          'assets/images/physics.jpg'),
+                                      height: 120,
+                                    ),
+                                  ),
+                                  Text(
+                                      'Physics'), //english is to be there right  instead of physics
                                 ],
                               ),
                             ),
@@ -153,13 +156,15 @@ class Challenge extends GetView<MyDrawerController> {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
-                                 Container(
-                                  child: const Image(
-                                  image: AssetImage('assets/images/maths.png'),
-                                  height: 120,
-            ),
-          ),
-                                  Text('Maths'),       //maths is to be there instead of chemistry change it later 
+                                  Container(
+                                    child: const Image(
+                                      image:
+                                          AssetImage('assets/images/chem.jpg'),
+                                      height: 120,
+                                    ),
+                                  ),
+                                  Text(
+                                      'Chemistry'), //maths is to be there instead of chemistry change it later
                                 ],
                               ),
                             ),
@@ -177,13 +182,15 @@ class Challenge extends GetView<MyDrawerController> {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
-                                 Container(
-                                  child: const Image(
-                                  image: AssetImage('assets/images/science.jpg'),
-                                  height: 120,
-            ),
-          ),
-                                  Text('Science'),   //science is to be there right instead of english change it 
+                                  Container(
+                                    child: const Image(
+                                      image: AssetImage(
+                                          'assets/images/english.png'),
+                                      height: 120,
+                                    ),
+                                  ),
+                                  Text(
+                                      'English'), //science is to be there right instead of english change it
                                 ],
                               ),
                             ),
@@ -201,13 +208,15 @@ class Challenge extends GetView<MyDrawerController> {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
-                                 Container(
-                                  child: const Image(
-                                  image: AssetImage('assets/images/sst.jpg'),
-                                  height: 120,
-            ),
-          ),
-                                  Text('Maths'),   //SST is to be there instead of mats change it later 
+                                  Container(
+                                    child: const Image(
+                                      image:
+                                          AssetImage('assets/images/maths.png'),
+                                      height: 120,
+                                    ),
+                                  ),
+                                  Text(
+                                      'Maths'), //SST is to be there instead of mats change it later
                                 ],
                               ),
                             ),
