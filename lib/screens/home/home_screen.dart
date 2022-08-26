@@ -13,6 +13,7 @@ import 'read.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
 import 'package:speech_to_text/speech_to_text.dart';
 import 'global.dart' as global;
+import 'hl.dart';
 
 class HomeScreen extends GetView<MyDrawerController> {
   HomeScreen({Key? key}) : super(key: key);
@@ -52,6 +53,12 @@ class HomeScreen extends GetView<MyDrawerController> {
       await flutterTts.setLanguage("hi-IN");
       await flutterTts.setPitch(1);
       await flutterTts.speak("Double Tap to Read notes ");
+    }
+
+    Future _speak4() async {
+      await flutterTts.setLanguage("hi-IN");
+      await flutterTts.setPitch(1);
+      await flutterTts.speak("Braille in hindi ");
     }
 
     QuizPaperController _quizePprContoller = Get.find();
@@ -216,6 +223,30 @@ class HomeScreen extends GetView<MyDrawerController> {
                                 ),
                               ),
                               Text('E-books'),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Card(
+                        child: InkWell(
+                          onTap: () => _speak4(),
+                          onDoubleTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => HL()),
+                            );
+                          },
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Container(
+                                child: const Image(
+                                  image: AssetImage(
+                                      'assets/images/braille_learn.jpeg'),
+                                  height: 120,
+                                ),
+                              ),
+                              Text('Braille In Hindi'),
                             ],
                           ),
                         ),
