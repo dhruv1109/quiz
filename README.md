@@ -1,16 +1,14 @@
-# quizzle
-
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![Screenshot (78)](https://user-images.githubusercontent.com/56334865/196529002-f77adce0-da8c-45c7-9a45-19d91c04ca28.png)
+![Screenshot (79)](https://user-images.githubusercontent.com/56334865/196529012-0d7ef8b1-975c-474e-b70b-47ebf29f0bc9.png)
+![Screenshot (80)](https://user-images.githubusercontent.com/56334865/196529014-ec3e0144-8183-4d08-8a60-8ec93a147086.png)
+![Screenshot (81)](https://user-images.githubusercontent.com/56334865/196529026-93a728e1-0c53-4ba2-8eb3-5dbf06147b44.png)
+![Screenshot (82)](https://user-images.githubusercontent.com/56334865/196529034-2735957e-5c75-4b60-9839-2d947d6fff18.png)
+![Screenshot (83)](https://user-images.githubusercontent.com/56334865/196529043-06c48324-abb5-452c-93ee-464a9265b1d2.png)
+![Screenshot (84)](https://user-images.githubusercontent.com/56334865/196529047-f2083c4b-a672-48da-a709-7099183c39a9.png)
+![Screenshot (85)](https://user-images.githubusercontent.com/56334865/196529049-b983a50e-bfe8-40e0-bfa5-be88a79aa51f.png)
+![Screenshot (86)](https://user-images.githubusercontent.com/56334865/196529051-a146933b-b173-4c81-9a8e-06655422bf43.png)
+![Screenshot (87)](https://user-images.githubusercontent.com/56334865/196529057-d3c59b82-fcc5-4fdd-a427-79d905e12ec5.png)
+![Screenshot (88)](https://user-images.githubusercontent.com/56334865/196529063-bdd8ae78-a568-494b-b2de-40a5a16b3bb7.png)
+![Screenshot (89)](https://user-images.githubusercontent.com/56334865/196529066-50db2a8a-e6ae-4749-a22e-da76cf1e88ec.png)
+![Screenshot (90)](https://user-images.githubusercontent.com/56334865/196529075-bb7555e5-b4c6-4f5f-b24c-54ab7cb4034d.png)
+![Screenshot (91)](https://user-images.githubusercontent.com/56334865/196529081-ed13296d-c84d-4892-8ef3-d309ca7fc576.png)
